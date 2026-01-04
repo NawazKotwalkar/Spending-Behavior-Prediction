@@ -8,8 +8,8 @@ import pandas as pd
 class PDF(FPDF):
     def __init__(self):
         super().__init__()
-        self.add_font("DejaVu", "", "fonts/DejaVuSans.ttf", uni=True)
-        self.add_font("DejaVu", "B", "fonts/DejaVuSans.ttf", uni=True)
+        self.add_font("DejaVu", "", "D:\DEMO\Spending-Behavior-Prediction-main\fonts\dejavu-fonts-ttf-2.37\ttf\DejaVuSans.ttf", uni=True)
+        self.add_font("DejaVu", "B", "D:\DEMO\Spending-Behavior-Prediction-main\fonts\dejavu-fonts-ttf-2.37\ttf\DejaVuSans-Bold.ttf", uni=True)
 
     def header(self):
         self.set_font("DejaVu", "B", 14)
