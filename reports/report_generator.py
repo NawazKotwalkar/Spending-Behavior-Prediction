@@ -31,7 +31,6 @@ class PDF(FPDF):
             self.add_text(f"Missing chart: {image_path}")
             return
 
-        # 🔥 One chart per page
         self.add_page()
 
         if title:
