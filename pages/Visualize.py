@@ -17,9 +17,8 @@ def show():
         )
         return
 
-    # date is already parsed in csv_parser.py
     if not pd.api.types.is_datetime64_any_dtype(df["date"]):
-        df["date"] = pd.to_datetime(df["date"], errors="coerce")
+        df["month"] = pd.to_datetime(df["date"], errors="coerce").dt.to_period("M").astype(str)
         df = df.dropna(subset=["date"])
 
     if df.empty:
