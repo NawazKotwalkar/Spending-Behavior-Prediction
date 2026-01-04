@@ -40,13 +40,11 @@ def show():
         with open(path, "wb") as f:
             f.write(uploaded_file.getbuffer())
         st.session_state["transaction_file"] = path
-        st.write("🔍 Transaction path set to:", path)
 
         try:
             df = parse_csv(path)
             st.markdown(f'<div class="custom-alert-success">✅ Transaction file parsed successfully.</div>', unsafe_allow_html=True)
-            st.dataframe(df.head())
-
+            
             # Insert into MySQL
             conn = get_db_connection()
             cursor = conn.cursor()
@@ -59,10 +57,15 @@ def show():
                     )
                     inserted += 1
                 except Exception as e:
-                    st.markdown(f""" <div class="custom-alert-warning">f"⚠️ Skipped transaction row due to error: {e} </div>""", unsafe_allow_html=True)
+                    st.markdown(
+                        f"""<div class="custom-alert-warning">
+                        ⚠️ Skipped a transaction row.
+                        </div>""",
+                        unsafe_allow_html=True
+                    )
             conn.commit()
             conn.close()
-            st.markdown(f'<div class="custom-alert-success">f"✅ {inserted} transactions stored in MySQL for {current_user}.</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="custom-alert-success">✅ {inserted} transactions stored for {current_user}.</div>', unsafe_allow_html=True)
 
         except Exception as e:
             st.error(f"❌ Failed to parse or insert transaction file: {e}")
@@ -81,7 +84,6 @@ def show():
         with open(path, "wb") as f:
             f.write(budget_file.getbuffer())
         st.session_state["budget_file"] = path
-        st.write("📄 Budget path set to:", path)
         df = pd.read_csv(path)
         df.columns = df.columns.str.strip().str.lower()
         st.session_state["budget_df"] = df
@@ -92,7 +94,6 @@ def show():
 
             if {"category", "budget"}.issubset(df.columns):
                 st.markdown(f'<div class="custom-alert-success">✅ Budget file parsed successfully.</div>', unsafe_allow_html=True)
-                st.dataframe(df.head())
 
                 conn = get_db_connection()
                 cursor = conn.cursor()
