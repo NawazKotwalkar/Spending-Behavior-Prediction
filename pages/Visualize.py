@@ -8,7 +8,7 @@ def show():
 
     transaction_file = st.session_state.get("transaction_file")
     if not transaction_file or not os.path.exists(transaction_file):
-        st.markdown(f""" <div class="custom-alert-warning">"⚠️ No transaction data available. Please upload a file first.</div>""", unsafe_allow_html=True)
+        st.markdown(""" <div class="custom-alert-warning">"⚠️ No transaction data available. Please upload a file first.</div>""", unsafe_allow_html=True)
         return
 
     try:
@@ -31,7 +31,7 @@ def show():
         return
 
     df["month"] = df["date"].dt.to_period("M").astype(str)
-    
+
     available_months = sorted(df["month"].unique())
     available_categories = sorted(df["category"].unique())
 
