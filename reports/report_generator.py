@@ -6,20 +6,24 @@ import pandas as pd
 
 
 class PDF(FPDF):
+    def __init__(self):
+        super().__init__()
+        self.add_font("DejaVu", "", "fonts/DejaVuSans.ttf", uni=True)
+        self.add_font("DejaVu", "B", "fonts/DejaVuSans.ttf", uni=True)
+
     def header(self):
-        self.set_font("Arial", "B", 14)
+        self.set_font("DejaVu", "B", 14)
         self.cell(0, 10, "Personal Finance Report", ln=True, align="C")
         self.ln(6)
 
     def add_heading(self, text, size=13):
-        self.set_font("Arial", "B", size)
+        self.set_font("DejaVu", "B", size)
         self.cell(0, 10, str(text), ln=True)
         self.ln(3)
 
     def add_text(self, text):
-        self.set_font("Arial", "", 11)
-        safe_text = str(text).replace("₹", "Rs.")
-        self.multi_cell(0, 8, safe_text)
+        self.set_font("DejaVu", "", 11)
+        self.multi_cell(0, 8, str(text))
         self.ln(1)
 
     def add_chart_image(self, image_path, title=None):
