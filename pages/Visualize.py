@@ -5,7 +5,7 @@ from utils.chart_utils import generate_chart, display_budget_vs_actual
 
 def show():
     st.subheader("📊 Visualize Spending")
-
+    st.error("🚨 VISUALIZE FILE VERSION: JAN-04-FIX")
     df = st.session_state.get("transactions_df")
 
     if df is None or df.empty:
