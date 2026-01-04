@@ -45,7 +45,6 @@ def show():
             df = parse_csv(path)
             st.markdown(f'<div class="custom-alert-success">✅ Transaction file parsed successfully.</div>', unsafe_allow_html=True)
             
-            # Insert into MySQL
             conn = get_db_connection()
             cursor = conn.cursor()
             inserted = 0
@@ -114,7 +113,7 @@ def show():
                         st.markdown(f""" <div class="custom-alert-warning">f"⚠️ Skipped budget row due to error: {e} </div>""", unsafe_allow_html=True)
                 conn.commit()
                 conn.close()
-                st.markdown(f'<div class="custom-alert-success">f"✅ {inserted} budget items stored in MySQL for {current_user} ({current_month}).</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="custom-alert-success">✅ {inserted} budget items stored for {current_user} ({current_month}).</div>', unsafe_allow_html=True)
             else:
                 st.error("❌ Budget CSV must contain 'category' and 'budget' columns.")
         except Exception as e:
