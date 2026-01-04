@@ -9,26 +9,21 @@ def show():
     df = st.session_state.get("transactions_df")
 
     if df is None or df.empty:
-        st.markdown(
-            """<div class="custom-alert-warning">
-            ⚠️ No transaction data available. Please upload a file first.
-            </div>""",
-            unsafe_allow_html=True
-        )
+        st.warning("⚠️ No transaction data available.")
         return
 
-    if not pd.api.types.is_datetime64_any_dtype(df["date"]):
-        df["month"] = pd.to_datetime(df["date"], errors="coerce").dt.to_period("M").astype(str)
-        df = df.dropna(subset=["date"])
+    # 🔒 HARD FIX: clone + enforce dtype
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
+    # Drop invalid dates BEFORE using .dt
+    df = df.dropna(subset=["date"])
 
     if df.empty:
-        st.markdown(
-            """<div class="custom-alert-warning">
-            ⚠️ All rows were dropped due to invalid dates.
-            </div>""",
-            unsafe_allow_html=True
-        )
+        st.warning("⚠️ No valid dates found after parsing.")
         return
+
+   
 
     df["month"] = df["date"].dt.to_period("M").astype(str)
 
