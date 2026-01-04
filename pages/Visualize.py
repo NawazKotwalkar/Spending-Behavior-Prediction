@@ -6,25 +6,23 @@ from utils.chart_utils import generate_chart, display_budget_vs_actual
 def show():
     st.subheader("📊 Visualize Spending")
     st.error("🚨 VISUALIZE FILE VERSION: JAN-04-FIX")
+
     df = st.session_state.get("transactions_df")
 
     if df is None or df.empty:
         st.warning("⚠️ No transaction data available.")
         return
 
-    # 🔒 HARD FIX: clone + enforce dtype
+    # 🔒 HARD FIX (the important part)
     df = df.copy()
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-    # Drop invalid dates BEFORE using .dt
     df = df.dropna(subset=["date"])
 
     if df.empty:
         st.warning("⚠️ No valid dates found after parsing.")
         return
 
-   
-
+    # ✅ SAFE to use .dt now
     df["month"] = df["date"].dt.to_period("M").astype(str)
 
     available_months = sorted(df["month"].unique())
@@ -68,7 +66,6 @@ def show():
 
     st.markdown("---")
     st.subheader("📊 Budget vs Actual Spending")
-    st.caption("Compare planned budget with actual spending by category")
 
     if df_filtered.empty:
         st.info("No data available for the selected filters.")
