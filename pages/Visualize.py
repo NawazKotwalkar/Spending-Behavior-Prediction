@@ -12,13 +12,26 @@ def show():
         return
 
     try:
-        df = pd.read_csv(transaction_file, parse_dates=["date"])
+        df = pd.read_csv(transaction_file)
     except Exception as e:
         st.error(f"❌ Failed to load transaction file: {e}")
         return
 
-    df["month"] = df["date"].dt.to_period("M").astype(str)
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
+    df = df.dropna(subset=["date"])
+
+    if df.empty:
+        st.markdown(
+            """<div class="custom-alert-warning">
+            ⚠️ All rows were dropped due to invalid dates.
+            </div>""",
+            unsafe_allow_html=True
+        )
+        return
+
+    df["month"] = df["date"].dt.to_period("M").astype(str)
+    
     available_months = sorted(df["month"].unique())
     available_categories = sorted(df["category"].unique())
 
