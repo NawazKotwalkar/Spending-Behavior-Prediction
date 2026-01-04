@@ -1,0 +1,10 @@
+{
+  "food": ["zomato", "swiggy", "restaurant", "cafe", "dominos"],
+  "shopping": ["amazon", "flipkart", "ajio", "myntra"],
+  "bills": ["electricity", "recharge", "internet", "gas"],
+  "travel": ["uber", "ola", "irctc", "airbnb"],
+  "salary": ["salary", "credited", "income"],
+  "entertainment": ["netflix", "hotstar", "spotify"],
+  "transfer": ["neft", "upi", "imps", "phonepe", "gpay"],
+  "others": []
+}

@@ -1,0 +1,504 @@
+/* === General Layout === */
+html, body, [data-testid="stApp"] {
+  background-color: #f7fbf9;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1a1a1a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* === Headings === */
+h1, h2, h3, h4 {
+  color: #145a32;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+/* === Option Menu / Tabs (option_menu uses generated classes; keep both variants) === */
+.css-1g0l1y.e1g8pov65,
+.option-menu,
+[data-testid="option-menu"] {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(234,246,240,0.7);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(31,122,77,0.18);
+  margin-bottom: 1.5rem;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Active tab style */
+.css-1b3qz5n.e1g8pov65,
+.option-menu .active,
+.option-active {
+  background: linear-gradient(to right, #145a32, #1f7a4d) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  padding: 0.6rem 1.2rem !important;
+  box-shadow: 0 4px 12px rgba(31,122,77,0.32) !important;
+}
+
+/* Inactive tab */
+.css-1b3qz5n.e1g8pov64,
+.option-menu .inactive,
+.option-inactive {
+  color: #145a32 !important;
+  background-color: transparent !important;
+  padding: 0.6rem 1.2rem !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  transition: all 0.18s ease-in-out;
+}
+.css-1b3qz5n.e1g8pov64:hover,
+.option-menu .inactive:hover {
+  background: rgba(31,122,77,0.10) !important;
+  color: #0f5132 !important;
+  transform: translateY(-1px);
+}
+
+/* Icon spacing inside tabs */
+.css-1b3qz5n.e1g8pov65 > svg,
+.css-1b3qz5n.e1g8pov64 > svg,
+.option-menu svg {
+  margin-right: 8px;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+
+/* === Buttons === */
+.stButton > button,
+button[kind="primary"],
+button[role="button"] {
+  background-color: #1f7a4d !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  transition: background-color 0.25s ease, box-shadow 0.18s;
+}
+.stButton > button:hover,
+button[kind="primary"]:hover {
+  background-color: #145a32 !important;
+  box-shadow: 0 4px 12px rgba(31,122,77,0.28) !important;
+}
+
+/* === Inputs / Textareas / Date inputs === */
+input, textarea,
+.stTextInput input, .stDateInput input,
+input[type="text"], input[type="date"] {
+  background-color: #ffffff !important;
+  border: 1px solid #1f7a4d !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  color: #111 !important;
+  font-weight: 500 !important;
+}
+input:focus, textarea:focus,
+.stTextInput input:focus, .stDateInput input:focus {
+  border: 1px solid #145a32 !important;
+  outline: none !important;
+  box-shadow: 0 0 6px rgba(31,122,77,0.22) !important;
+}
+
+/* === Select / Multiselect (BaseWeb wrappers) === */
+.stMultiSelect div[data-baseweb="select"],
+.stSelectbox div[data-baseweb="select"],
+div[data-baseweb="select"] {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: 2px solid #1f7a4d !important;
+  border-radius: 0 !important;
+  padding: 6px 0 4px 0 !important;
+  color: #145a32 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  box-shadow: none !important;
+  transition: all 0.18s ease-in-out;
+}
+.stMultiSelect div[data-baseweb="select"]:focus-within,
+.stSelectbox div[data-baseweb="select"]:focus-within {
+  border-bottom: 2px solid #145a32 !important;
+  box-shadow: inset 0 -2px 0 #145a32 !important;
+}
+
+/* Placeholder / combobox text */
+.stMultiSelect div[data-baseweb="select"] div[role="combobox"] > div,
+.stSelectbox div[data-baseweb="select"] div[role="combobox"] > div {
+  color: #145a32 !important;
+  opacity: 0.9 !important;
+}
+
+/* Multi-select tags */
+div[data-baseweb="tag"] {
+  background-color: #eaf6f0 !important;
+  color: #145a32 !important;
+  border-radius: 6px !important;
+  padding: 2px 8px !important;
+  font-weight: 500 !important;
+}
+
+/* Dropdown option hover */
+ul[role="listbox"] > li:hover,
+div[role="option"]:hover {
+  background-color: #eaf6f0 !important;
+  color: #145a32 !important;
+}
+
+/* === Metric container === */
+[data-testid="metric-container"],
+.stMetric,
+div.metric-container {
+  background-color: #eaf6f0 !important;
+  border-left: 6px solid #2ecc71 !important;
+  padding: 1rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+  margin-bottom: 1rem !important;
+}
+
+/* === Alerts / Messages === */
+.stAlert, .stError, .stWarning, .stSuccess,
+div.alert, .alert-box {
+  padding: 0.8rem 1rem !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  margin-bottom: 1rem !important;
+  font-size: 15px !important;
+}
+.stError, .alert-error {
+  background-color: #fdecea !important;
+  color: #b71c1c !important;
+  border-left: 5px solid #b71c1c !important;
+}
+.stWarning, .alert-warning {
+  background-color: #fff8e1 !important;
+  color: #ff6f00 !important;
+  border-left: 5px solid #ffa726 !important;
+}
+.stSuccess, .alert-success {
+  background-color: #eaf6f0 !important;
+  color: #1f7a4d !important;
+  border-left: 5px solid #2ecc71 !important;
+}
+
+/* === Dataframe / table styling === */
+.stDataFrame, .dataframe, div.stDataFrame {
+  background-color: #ffffff !important;
+  border: 1px solid #cfe8dc !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  font-size: 15px !important;
+}
+
+/* === File uploader === */
+[data-testid="stFileUploader"],
+input[type="file"] {
+  background-color: #eaf6f0 !important;
+  border: 2px solid #1f7a4d !important;
+  border-radius: 12px !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+[data-testid="stFileUploader"] label,
+input[type="file"] + label {
+  color: #0f5132 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+[data-testid="stFileDropzone"] {
+  background-color: #f7fbf9 !important;
+  border: 2px solid #1f7a4d !important;
+  border-radius: 10px !important;
+  padding: 0.75rem !important;
+  color: #111 !important;
+}
+[data-testid="stFileUploader"] section {
+  background-color: #eaf6f0 !important;
+  padding: 0.5rem !important;
+  border-radius: 8px !important;
+  color: #111 !important;
+  font-weight: 500 !important;
+}
+
+/* === Sidebar hide helper === */
+section[data-testid="stSidebar"] {
+  display: none !important;
+}
+
+/* === Scrollbar visual === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f7a4d;
+  border-radius: 10px;
+}
+
+/* === Custom alerts used in code === */
+.custom-alert-warning {
+  background-color: #fff8e1;
+  border-left: 6px solid #ffa726;
+  padding: 12px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  color: #ff6f00;
+  box-shadow: 0 2px 6px rgba(255,165,0,0.08);
+}
+.custom-alert-success {
+  background-color: #eaf6f0;
+  border-left: 6px solid #2ecc71;
+  padding: 12px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  color: #1f7a4d;
+  box-shadow: 0 2px 6px rgba(0,128,0,0.06);
+}
+
+/* === Predict / Metrics — fixed & responsive === */
+.metrics-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: 0.75rem;
+  box-sizing: border-box;
+}
+
+/* card shell */
+.custom-metric-card {
+  box-sizing: border-box;
+  flex: 1 1 220px;
+  min-width: 200px;
+  max-width: 420px;
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+/* inner visual wrapper */
+.custom-metric-card .custom-alert-warning {
+  width: 100%;
+  height: 100%;
+  background-color: #fff8e1;
+  border-left: 6px solid #ffa726;
+  padding: 14px 16px;
+  border-radius: 10px;
+  color: #ff6f00;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255,165,0,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+/* title and value */
+.metric-title {
+  font-size: 13px;
+  color: #145a32;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+}
+.metric-value {
+  font-size: 20px;
+  color: #0f5132;
+  font-weight: 900;
+  margin: 0;
+}
+
+/* prediction card */
+.prediction-card {
+  background: linear-gradient(180deg, #f7fbf9, #eaf6f0);
+  border: 1px solid #cfe8dc;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  margin-top: 8px;
+  display: inline-block;
+}
+.prediction-card .pred-title {
+  color: #145a32;
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.prediction-card .pred-amount {
+  color: #0f5132;
+  font-size:20px;
+  font-weight:800;
+}
+
+/* responsive tweak */
+@media (max-width: 560px) {
+  .custom-metric-card { flex: 1 1 100%; min-width: 100%; max-width: 100%; }
+  .metric-value { font-size: 18px; }
+}
+
+/* === Small helpers === */
+.text-muted { color: #6b6b6b !important; font-size: 13px; }
+.helper-row { display:flex; gap:12px; align-items:center; }
+
+/* ===== Simple Download Button ===== */
+div.stDownloadButton > button {
+  background-color: #1f7a4d !important;
+  color: #ffffff !important;
+  padding: 8px 16px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+}
+div.stDownloadButton > button:hover {
+  background-color: #145a32 !important;
+}
+div.stDownloadButton > button:active {
+  transform: scale(0.97);
+}
+
+/* === FIX: Show input labels clearly === */
+label,
+.stTextInput label,
+.stTextInput > label,
+.stTextInput div[data-testid="stMarkdownContainer"] p {
+  color: #145a32 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
+}
+/* === File Uploader — Dark Rich Green === */
+[data-testid="stFileUploader"],
+input[type="file"] {
+  background-color: #1b3a2d !important; 
+  border: 2px dashed #2ecc71 !important;  
+  border-radius: 14px !important;
+  padding: 1.1rem !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Label text */
+[data-testid="stFileUploader"] label,
+input[type="file"] + label {
+  color: #e6f2ec !important;               
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+/* Dropzone area */
+[data-testid="stFileDropzone"] {
+  background-color: #173127 !important;    
+  border: 2px solid #2ecc71 !important;
+  border-radius: 12px !important;
+  padding: 0.85rem !important;
+  color: #e6f2ec !important;
+  font-weight: 500 !important;
+}
+
+/* Uploaded file section */
+[data-testid="stFileUploader"] section {
+  background-color: #204535 !important;
+  padding: 0.6rem !important;
+  border-radius: 10px !important;
+  color: #d9f3e6 !important;
+  font-weight: 500 !important;
+}
+
+/* Hover / focus feedback */
+[data-testid="stFileUploader"]:hover {
+  box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.25) !important;
+}
+
+/* Remove ugly default focus outline */
+[data-testid="stFileUploader"] *:focus {
+  outline: none !important;
+}
+
+/* === st.warning (SAFE override) === */
+.stWarning {
+  background-color: #fff8e1 !important;
+  color: #ff6f00 !important;
+  border-left: 6px solid #ffa726 !important;
+  border-radius: 12px !important;
+  padding: 0.9rem 1.1rem !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+}
+
+/* Warning icon (if rendered) */
+.stWarning svg {
+  color: #f1c40f !important;
+}
+
+/* Links inside warning */
+.stWarning a {
+  color: #ffe8a1 !important;
+  font-weight: 700 !important;
+  text-decoration: underline;
+}
+/* === st.error — Serious Finance Red === */
+.stError,
+div[data-testid="stAlert"][role="alert"].st-error {
+  background-color: #3a1f1f !important;     
+  color: #f5c7c7 !important;                
+  border-left: 6px solid #e74c3c !important;
+  border-radius: 12px !important;
+  padding: 0.9rem 1.1rem !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  box-shadow: 0 4px 14px rgba(231, 76, 60, 0.22) !important;
+}
+
+/* Error icon */
+.stError svg {
+  color: #e74c3c !important;
+}
+
+/* Links inside error */
+.stError a {
+  color: #f5c7c7 !important;
+  font-weight: 700 !important;
+  text-decoration: underline;
+}
+
+/* === Feedback Link Button === */
+div.stLinkButton > a,
+div.stLinkButton > a > button {
+  background-color: #1f7a4d !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(31, 122, 77, 0.25) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Hover effect */
+div.stLinkButton > a:hover > button {
+  background-color: #145a32 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(31, 122, 77, 0.35) !important;
+}
+
+/* Active click */
+div.stLinkButton > a:active > button {
+  transform: scale(0.97);
+}
+
