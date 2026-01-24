@@ -59,8 +59,3 @@ elif selected == "Report":
     import pages.Report as report
     report.show()
     report.show2()
-
-
-
-
-

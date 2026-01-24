@@ -80,8 +80,6 @@ def generate_pdf_report(
         pdf.add_heading("ML Model Evaluation")
         pdf.add_text(f"MAE (Mean Absolute Error): Rs.{mae:,.2f}")
         pdf.add_text(f"RMSE (Root Mean Squared Error): Rs.{rmse:,.2f}")
-        pdf.add_text(f"R² Score: {r2:.4f}")
-
     # -------------------- MONTH DATA --------------------
     if "month" not in df.columns:
         pdf.add_text("Error: 'month' column missing.")

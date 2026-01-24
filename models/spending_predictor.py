@@ -1,82 +1,68 @@
 import pandas as pd
-import joblib
-import os
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-model_dir = "models"
-os.makedirs(model_dir, exist_ok=True)
 
-MODEL_PATH = os.path.join(model_dir, "spending_model.pkl")
-MONTH_ENCODER_PATH = os.path.join(model_dir, "month_encoder.pkl")
-CATEGORY_ENCODER_PATH = os.path.join(model_dir, "category_encoder.pkl")
+def train_model(monthly_df: pd.DataFrame):
+    """
+    Train a spending prediction model.
+    Expected columns: month, category, total_spend
+    """
 
-def train_model(df: pd.DataFrame):
-    try:
-        df['date'] = pd.to_datetime(df['date'], errors='coerce')
-        df.dropna(subset=['date', 'category', 'amount'], inplace=True)
-        df['month'] = df['date'].dt.to_period('M').astype(str)
+    df = monthly_df.copy()
 
-        grouped = df.groupby(['month', 'category'])['amount'].sum().reset_index()
+    # Convert month to numeric timeline
+    df["month_idx"] = pd.PeriodIndex(df["month"], freq="M").astype(int)
 
-        le_month = LabelEncoder()
-        le_category = LabelEncoder()
-        grouped['month_encoded'] = le_month.fit_transform(grouped['month'])
-        grouped['category_encoded'] = le_category.fit_transform(grouped['category'])
+    X = df[["month_idx", "category"]]
+    X = pd.get_dummies(X, columns=["category"], drop_first=True)
 
-        X = grouped[['month_encoded', 'category_encoded']]
-        y = grouped['amount'].abs()
+    y = df["total_spend"]
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    # Time-based split (NO shuffle)
+    split_idx = max(1, int(len(df) * 0.8))
+    X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
+    y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
 
-        model = RandomForestRegressor(n_estimators=100, random_state=42)
-        model.fit(X_train, y_train)
+    model = RandomForestRegressor(
+        n_estimators=200,
+        random_state=42,
+        max_depth=6
+    )
 
-        joblib.dump(model, MODEL_PATH)
-        joblib.dump(le_month, MONTH_ENCODER_PATH)
-        joblib.dump(le_category, CATEGORY_ENCODER_PATH)
+    model.fit(X_train, y_train)
 
-        y_pred = model.predict(X_test)
-        mae = mean_absolute_error(y_test, y_pred)
-        rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-        r2 = r2_score(y_test, y_pred)
+    if len(X_test) > 0:
+        preds = model.predict(X_test)
+        mae = mean_absolute_error(y_test, preds)
+        rmse = np.sqrt(mean_squared_error(y_test, preds))
+    else:
+        mae, rmse = 0.0, 0.0
 
-        print("✅ Model trained.")
-        print(f"📊 MAE: ₹{mae:.2f}, RMSE: ₹{rmse:.2f}, R²: {r2:.4f}")
+    return model, (mae, rmse)
 
-        return mae, rmse, r2
 
-    except Exception as e:
-        print(f"❌ Training failed: {e}")
-        return None, None, None
+def predict_spending(model, month: str, category: str):
+    """
+    Predict spend for a given future month & category.
+    """
 
-def predict_spending(month_str: str, category_str: str):
-    try:
-        model = joblib.load(MODEL_PATH)
-        le_month = joblib.load(MONTH_ENCODER_PATH)
-        le_category = joblib.load(CATEGORY_ENCODER_PATH)
+    month_idx = pd.Period(month, freq="M").ordinal
 
-        if category_str not in le_category.classes_:
-            return f"⚠️ Category '{category_str}' not seen during training."
+    X_new = pd.DataFrame([{
+        "month_idx": month_idx,
+        "category": category
+    }])
 
-        category_encoded = le_category.transform([category_str])[0]
+    X_new = pd.get_dummies(X_new)
 
-        if month_str not in le_month.classes_:
-            all_months = list(le_month.classes_)
-            all_months_sorted = sorted(all_months)
-            last_seen_index = le_month.transform([all_months_sorted[-1]])[0]
-            month_encoded = last_seen_index + 1
-        else:
-            month_encoded = le_month.transform([month_str])[0]
+    # Align columns with training
+    for col in model.feature_names_in_:
+        if col not in X_new.columns:
+            X_new[col] = 0
 
-        prediction = model.predict([[month_encoded, category_encoded]])
-        return abs(prediction[0])
+    X_new = X_new[model.feature_names_in_]
 
-    except FileNotFoundError:
-        return "🚫 Model not trained yet."
-
-    except Exception as e:
-        return f"❌ Prediction error: {str(e)}"
+    prediction = model.predict(X_new)[0]
+    return float(max(0, prediction))
