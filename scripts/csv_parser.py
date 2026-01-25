@@ -17,8 +17,7 @@ def parse_csv(file_path: str) -> pd.DataFrame:
 
     Guarantees canonical columns:
     - date        (datetime)
-    - amount      (signed: +credit / -debit)
-    - spend       (positive expense)
+    - amount      (POSITIVE ONLY)
     - description (string)
     - category    (string)
     """
@@ -50,14 +49,14 @@ def parse_csv(file_path: str) -> pd.DataFrame:
         )
 
         if withdrawal_col and deposit_col:
-            df["amount"] = (
+            amount = (
                 pd.to_numeric(df[deposit_col], errors="coerce").fillna(0)
                 - pd.to_numeric(df[withdrawal_col], errors="coerce").fillna(0)
             )
         elif withdrawal_col:
-            df["amount"] = -pd.to_numeric(df[withdrawal_col], errors="coerce")
+            amount = -pd.to_numeric(df[withdrawal_col], errors="coerce")
         elif deposit_col:
-            df["amount"] = pd.to_numeric(df[deposit_col], errors="coerce")
+            amount = pd.to_numeric(df[deposit_col], errors="coerce")
         else:
             amount_col = match_column(
                 ["amount", "transaction_amount", "amt", "value"],
@@ -65,11 +64,10 @@ def parse_csv(file_path: str) -> pd.DataFrame:
             )
             if not amount_col:
                 raise ValueError("❌ Could not detect an amount column.")
-            df["amount"] = pd.to_numeric(df[amount_col], errors="coerce")
+            amount = pd.to_numeric(df[amount_col], errors="coerce")
 
-        # ---------------- SPEND (CANONICAL) ----------------
-        # Positive expense only – used everywhere else
-        df["spend"] = df["amount"].abs()
+        # ✅ FORCE POSITIVE AMOUNT (FINAL RULE)
+        df["amount"] = amount.abs()
 
         # ---------------- DESCRIPTION ----------------
         desc_col = match_column(

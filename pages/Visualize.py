@@ -6,32 +6,30 @@ from utils.chart_utils import generate_chart, display_budget_vs_actual
 def show():
     st.subheader("📊 Visualize Spending")
 
-    # ✅ Always read from session_state, not CSV
+    # Always read canonical dataframe from session_state
     df = st.session_state.get("df")
 
     if df is None or df.empty:
         st.warning("⚠️ No transaction data available. Please upload a file first.")
         return
 
-    # 🔥 HARD RESET DATAFRAME (prevents dtype corruption)
+    # Defensive copy
     df = df.copy()
 
-    # 🔥 FORCE datetime (NO .dt usage anywhere)
+    # Ensure datetime (Streamlit Cloud safe)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-    # Drop bad rows
-    df = df[df["date"].notna()]
+    df = df.dropna(subset=["date"])
 
     if df.empty:
         st.error("❌ No valid dates found in the data.")
         return
 
-    # 🔥 SAFE month column — NO .dt
+    # Month string (NO .dt accessor)
     df["month"] = df["date"].apply(
         lambda d: f"{d.year:04d}-{d.month:02d}"
     )
 
-    # ---------- FILTER OPTIONS ----------
+    # ---------------- FILTER OPTIONS ----------------
     available_months = sorted(
         df["month"].unique(),
         key=lambda x: pd.Period(x, freq="M")
@@ -61,7 +59,7 @@ def show():
         default=available_categories,
     )
 
-    # ---------- FILTER DATA ----------
+    # ---------------- FILTER DATA ----------------
     df_filtered = df[df["month"].isin(selected_months)]
 
     if selected_categories:
@@ -71,7 +69,7 @@ def show():
         st.info("ℹ️ No data for selected filters.")
         return
 
-    # ---------- CHART ----------
+    # ---------------- CHART SELECTION ----------------
     chart_option = st.selectbox(
         "Chart Type",
         [
@@ -90,13 +88,15 @@ def show():
         selected_categories,
     )
 
-    if chart:
+    if chart is not None:
         st.altair_chart(chart, use_container_width=True)
+    else:
+        st.warning("⚠️ Unable to generate chart with current selection.")
 
-    # ---------- BUDGET VS ACTUAL ----------
+    # ---------------- BUDGET VS ACTUAL ----------------
     st.markdown("---")
     st.subheader("📊 Budget vs Actual Spending")
-    st.caption("Budget = positive | Actual spend = negative")
+    st.caption("All values shown as positive amounts")
 
     budget_month = st.selectbox(
         "Select Month for Budget Comparison",
