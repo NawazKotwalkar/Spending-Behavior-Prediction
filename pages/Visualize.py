@@ -6,20 +6,30 @@ from utils.chart_utils import generate_chart, display_budget_vs_actual
 def show():
     st.subheader("📊 Visualize Spending")
 
-    # ✅ SINGLE SOURCE OF TRUTH
+    # ✅ Always read from session_state, not CSV
     df = st.session_state.get("df")
 
     if df is None or df.empty:
         st.warning("⚠️ No transaction data available. Please upload a file first.")
         return
 
-    # ✅ SAFETY: ensure datetime (cloud-safe)
-    if not pd.api.types.is_datetime64_any_dtype(df["date"]):
-        df["date"] = pd.to_datetime(df["date"], errors="coerce")
-        df = df.dropna(subset=["date"])
+    # 🔥 HARD RESET DATAFRAME (prevents dtype corruption)
+    df = df.copy()
 
-    # ✅ Month column (guaranteed safe)
-    df["month"] = df["date"].dt.to_period("M").astype(str)
+    # 🔥 FORCE datetime (NO .dt usage anywhere)
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
+    # Drop bad rows
+    df = df[df["date"].notna()]
+
+    if df.empty:
+        st.error("❌ No valid dates found in the data.")
+        return
+
+    # 🔥 SAFE month column — NO .dt
+    df["month"] = df["date"].apply(
+        lambda d: f"{d.year:04d}-{d.month:02d}"
+    )
 
     # ---------- FILTER OPTIONS ----------
     available_months = sorted(
@@ -29,7 +39,6 @@ def show():
 
     available_categories = sorted(
         df["category"]
-        .dropna()
         .astype(str)
         .str.strip()
         .str.lower()
@@ -37,7 +46,7 @@ def show():
     )
 
     if not available_months:
-        st.warning("⚠️ No valid month data found.")
+        st.warning("⚠️ No valid months available.")
         return
 
     selected_months = st.multiselect(
@@ -87,7 +96,7 @@ def show():
     # ---------- BUDGET VS ACTUAL ----------
     st.markdown("---")
     st.subheader("📊 Budget vs Actual Spending")
-    st.caption("Budget = positive | Actual spend = negative (outflow)")
+    st.caption("Budget = positive | Actual spend = negative")
 
     budget_month = st.selectbox(
         "Select Month for Budget Comparison",
