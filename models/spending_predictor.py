@@ -1,36 +1,52 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 
-def train_model(monthly_df: pd.DataFrame):
+def train_model(df: pd.DataFrame):
     """
-    Train a spending prediction model.
-    Expected columns: month, category, total_spend
+    Train a FAST & LIGHT Ridge regression model.
+    Expected input df columns:
+    date | category | amount
     """
 
-    df = monthly_df.copy()
+    df = df.copy()
 
-    # Convert month to numeric timeline
-    df["month_idx"] = pd.PeriodIndex(df["month"], freq="M").astype(int)
+    # --- Basic cleanup ---
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df = df.dropna(subset=["date", "category", "amount"])
 
-    X = df[["month_idx", "category"]]
+    # --- Monthly aggregation ---
+    df["month"] = df["date"].dt.to_period("M").astype(str)
+
+    grouped = (
+        df.groupby(["month", "category"])["amount"]
+        .sum()
+        .abs()
+        .reset_index(name="total_spend")
+    )
+
+    if grouped.empty:
+        return None, (0.0, 0.0)
+
+    # --- Encode time numerically ---
+    grouped["month_idx"] = pd.PeriodIndex(
+        grouped["month"], freq="M"
+    ).astype(int)
+
+    X = grouped[["month_idx", "category"]]
     X = pd.get_dummies(X, columns=["category"], drop_first=True)
 
-    y = df["total_spend"]
+    y = grouped["total_spend"]
 
-    # Time-based split (NO shuffle)
-    split_idx = max(1, int(len(df) * 0.8))
+    # --- Time-based split (NO shuffle) ---
+    split_idx = max(1, int(len(grouped) * 0.8))
     X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
     y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
 
-    model = RandomForestRegressor(
-        n_estimators=200,
-        random_state=42,
-        max_depth=6
-    )
-
+    # --- Ridge model (FAST) ---
+    model = Ridge(alpha=1.0)
     model.fit(X_train, y_train)
 
     if len(X_test) > 0:
@@ -45,19 +61,21 @@ def train_model(monthly_df: pd.DataFrame):
 
 def predict_spending(model, month: str, category: str):
     """
-    Predict spend for a given future month & category.
+    Predict spend for a future month & category.
     """
 
     month_idx = pd.Period(month, freq="M").ordinal
 
-    X_new = pd.DataFrame([{
-        "month_idx": month_idx,
-        "category": category
-    }])
+    X_new = pd.DataFrame(
+        [{
+            "month_idx": month_idx,
+            "category": category
+        }]
+    )
 
     X_new = pd.get_dummies(X_new)
 
-    # Align columns with training
+    # Align with training columns
     for col in model.feature_names_in_:
         if col not in X_new.columns:
             X_new[col] = 0
