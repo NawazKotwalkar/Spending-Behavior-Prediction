@@ -1,37 +1,43 @@
 import streamlit as st
 import pandas as pd
-import os
 from utils.chart_utils import generate_chart, display_budget_vs_actual
+
 
 def show():
     st.subheader("📊 Visualize Spending")
 
-    transaction_file = st.session_state.get("transaction_file")
-    if not transaction_file or not os.path.exists(transaction_file):
+    # ✅ SINGLE SOURCE OF TRUTH
+    df = st.session_state.get("df")
+
+    if df is None or df.empty:
         st.warning("⚠️ No transaction data available. Please upload a file first.")
         return
 
-    try:
-        df = pd.read_csv(transaction_file)
-    except Exception as e:
-        st.error(f"❌ Failed to load transaction file: {e}")
-        return
+    # ✅ SAFETY: ensure datetime (cloud-safe)
+    if not pd.api.types.is_datetime64_any_dtype(df["date"]):
+        df["date"] = pd.to_datetime(df["date"], errors="coerce")
+        df = df.dropna(subset=["date"])
 
-    # ✅ FORCE datetime (CRITICAL for Streamlit Cloud)
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    df = df.dropna(subset=["date"])
-
-    # ✅ SAFE month derivation
+    # ✅ Month column (guaranteed safe)
     df["month"] = df["date"].dt.to_period("M").astype(str)
 
+    # ---------- FILTER OPTIONS ----------
     available_months = sorted(
         df["month"].unique(),
         key=lambda x: pd.Period(x, freq="M")
     )
-    available_categories = sorted(df["category"].dropna().unique())
+
+    available_categories = sorted(
+        df["category"]
+        .dropna()
+        .astype(str)
+        .str.strip()
+        .str.lower()
+        .unique()
+    )
 
     if not available_months:
-        st.warning("No valid date data available.")
+        st.warning("⚠️ No valid month data found.")
         return
 
     selected_months = st.multiselect(
@@ -46,11 +52,17 @@ def show():
         default=available_categories,
     )
 
+    # ---------- FILTER DATA ----------
     df_filtered = df[df["month"].isin(selected_months)]
 
     if selected_categories:
         df_filtered = df_filtered[df_filtered["category"].isin(selected_categories)]
 
+    if df_filtered.empty:
+        st.info("ℹ️ No data for selected filters.")
+        return
+
+    # ---------- CHART ----------
     chart_option = st.selectbox(
         "Chart Type",
         [
@@ -72,13 +84,10 @@ def show():
     if chart:
         st.altair_chart(chart, use_container_width=True)
 
+    # ---------- BUDGET VS ACTUAL ----------
     st.markdown("---")
     st.subheader("📊 Budget vs Actual Spending")
-    st.caption("Compare planned budget with actual spending by category")
-
-    if df_filtered.empty:
-        st.info("No data available for the selected filters.")
-        return
+    st.caption("Budget = positive | Actual spend = negative (outflow)")
 
     budget_month = st.selectbox(
         "Select Month for Budget Comparison",
