@@ -79,33 +79,36 @@ def show():
             cursor = conn.cursor()
 
             inserted = 0
-            for _, row in df.iterrows():
-                try:
-                    cursor.execute(
-                        """
-                        INSERT INTO transactions (username, date, category, description, amount)
-                        VALUES (%s, %s, %s, %s, %s)
-                        """,
-                        (
-                            current_user,
-                            row["date"],
-                            row.get("category", "misc"),
-                            row["description"],
-                            float(row["amount"]),
-                        ),
-                    )
-                    inserted += 1
-                except Exception:
-                    pass
+            records = [
+                (
+                    current_user,
+                    row["date"],
+                    row.get("category", "misc"),
+                    row["description"],
+                    float(row["amount"]),
+                )
+                for _, row in df.iterrows()
+            ]
 
+            cursor.executemany(
+                """
+                INSERT INTO transactions
+                (username, date, category, description, amount)
+                VALUES (%s, %s, %s, %s, %s)
+                """,
+                records
+            )
+
+            inserted = cursor.rowcount
             conn.commit()
             conn.close()
+
 
             st.info(f"📥 {inserted} transactions stored for {current_user}")
 
         except Exception as e:
-            st.error(f"❌ Failed to parse transaction file: {e}")
-            return
+                st.error(f"❌ Failed to parse transaction file: {e}")
+                return
 
     st.markdown("---")
 
@@ -136,26 +139,30 @@ def show():
             current_month = pd.Timestamp.now().strftime("%Y-%m")
             inserted = 0
 
-            for _, row in df_budget.iterrows():
-                cursor.execute(
-                    """
-                    INSERT INTO budgets (username, month, category, budget_amount)
-                    VALUES (%s, %s, %s, %s)
-                    ON DUPLICATE KEY UPDATE budget_amount = VALUES(budget_amount)
-                    """,
-                    (
-                        current_user,
-                        current_month,
-                        row["category"],
-                        float(row["budget"]),
-                    ),
-                )
-                inserted += 1
+            records = [
+            (
+                current_user,
+                current_month,
+                row["category"],
+                float(row["budget"]),
+            )
+            for _, row in df_budget.iterrows()
+        ]
+
+            cursor.executemany(
+                """
+                INSERT INTO budgets (username, month, category, budget_amount)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE budget_amount = VALUES(budget_amount)
+                """,
+                records
+            )
 
             conn.commit()
             conn.close()
 
-            st.success(f"✅ {inserted} budget items saved for {current_user}")
+            st.success(f"✅ {cursor.rowcount} budget items saved for {current_user}")
+
 
         except Exception as e:
             st.error(f"❌ Failed to store budget data: {e}")
