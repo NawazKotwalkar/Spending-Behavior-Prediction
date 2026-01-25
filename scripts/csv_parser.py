@@ -1,10 +1,11 @@
 import pandas as pd
 import difflib
 
-
 def match_column(possible_names, df_columns, cutoff=0.6):
     for name in possible_names:
-        match = difflib.get_close_matches(name.lower(), df_columns, n=1, cutoff=cutoff)
+        match = difflib.get_close_matches(
+            name.lower(), df_columns, n=1, cutoff=cutoff
+        )
         if match:
             return match[0]
     return None
@@ -13,13 +14,18 @@ def match_column(possible_names, df_columns, cutoff=0.6):
 def parse_csv(file_path: str) -> pd.DataFrame:
     """
     Robust CSV parser for bank statements.
-    Guarantees: date, amount, description, category
+
+    Guarantees canonical columns:
+    - date        (datetime)
+    - amount      (signed: +credit / -debit)
+    - spend       (positive expense)
+    - description (string)
+    - category    (string)
     """
     try:
-        df = pd.read_csv(file_path)
-        df = df.copy()
+        df = pd.read_csv(file_path).copy()
 
-        # Normalize column names
+        # ---------------- NORMALIZE COLUMNS ----------------
         df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
         columns = df.columns.tolist()
 
@@ -61,16 +67,18 @@ def parse_csv(file_path: str) -> pd.DataFrame:
                 raise ValueError("❌ Could not detect an amount column.")
             df["amount"] = pd.to_numeric(df[amount_col], errors="coerce")
 
+        # ---------------- SPEND (CANONICAL) ----------------
+        # Positive expense only – used everywhere else
+        df["spend"] = df["amount"].abs()
+
         # ---------------- DESCRIPTION ----------------
         desc_col = match_column(
             ["description", "narration", "details", "remarks", "transaction_details"],
             columns,
         )
-
-        if desc_col:
-            df["description"] = df[desc_col].astype(str)
-        else:
-            df["description"] = "no description"
+        df["description"] = (
+            df[desc_col].astype(str) if desc_col else "no description"
+        )
 
         # ---------------- CATEGORY ----------------
         if "category" not in df.columns:
@@ -84,8 +92,7 @@ def parse_csv(file_path: str) -> pd.DataFrame:
         )
 
         # ---------------- CLEAN ----------------
-        df = df.dropna(subset=["date", "amount"])
-        df = df.reset_index(drop=True)
+        df = df.dropna(subset=["date", "amount"]).reset_index(drop=True)
 
         if df.empty:
             raise ValueError("❌ No valid rows after parsing.")
