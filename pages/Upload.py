@@ -16,11 +16,16 @@ def show():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("SELECT username FROM users WHERE username=%s", (current_user,))
+        cursor.execute(
+            "SELECT username FROM users WHERE username=%s",
+            (current_user,)
+        )
+
         if not cursor.fetchone():
             cursor.execute(
                 """
-                INSERT INTO users (username, first_name, last_name, contact, email, password_, role)
+                INSERT INTO users
+                (username, first_name, last_name, contact, email, password_, role)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
@@ -34,7 +39,9 @@ def show():
                 ),
             )
             conn.commit()
+
         conn.close()
+
     except Exception as e:
         st.error(f"❌ Failed to ensure user exists: {e}")
         return
@@ -42,11 +49,12 @@ def show():
     # -------------------- TRANSACTION UPLOAD --------------------
     st.markdown("### 🏦 Upload Bank Statement (.csv only)")
     uploaded_file = st.file_uploader(
-        "Choose Transaction File", type=["csv"], key="bank_upload"
+        "Choose Transaction File",
+        type=["csv"],
+        key="bank_upload",
     )
 
-    if uploaded_file:
-        # 🔒 Safe unique filename
+    if uploaded_file is not None:
         filename = f"transactions_{uuid.uuid4().hex}.csv"
         path = os.path.join("data", filename)
 
@@ -60,30 +68,30 @@ def show():
         st.session_state["transaction_file"] = path
 
         try:
+            # ---- PARSE CSV ----
             df = parse_csv(path)
 
-            # ---- REQUIRED DERIVED COLUMNS ----
+            # ---- CANONICAL CLEANUP ----
             df["date"] = pd.to_datetime(df["date"], errors="coerce")
             df = df.dropna(subset=["date", "amount"])
 
-            df["month"] = df["date"].dt.to_period("M").astype(str)
-            df["spend"] = -df["amount"]
+            # ❌ DO NOT CREATE month HERE
+            # ❌ DO NOT CREATE spend COLUMN
 
-            # ---- STORE CANONICAL DATAFRAME ----
+            # ---- STORE IN SESSION STATE ----
             st.session_state["df"] = df
 
-            st.success("✅ Transaction file uploaded and parsed successfully.")
+            st.success(f"✅ Loaded {len(df)} transactions successfully.")
 
             # ---- INSERT INTO DATABASE ----
             conn = get_db_connection()
             cursor = conn.cursor()
 
-            inserted = 0
             records = [
                 (
                     current_user,
                     row["date"],
-                    row.get("category", "misc"),
+                    row.get("category", "uncategorized"),
                     row["description"],
                     float(row["amount"]),
                 )
@@ -96,27 +104,30 @@ def show():
                 (username, date, category, description, amount)
                 VALUES (%s, %s, %s, %s, %s)
                 """,
-                records
+                records,
             )
 
-            inserted = cursor.rowcount
             conn.commit()
+            inserted = cursor.rowcount
             conn.close()
-
 
             st.info(f"📥 {inserted} transactions stored for {current_user}")
 
         except Exception as e:
-                st.error(f"❌ Failed to parse transaction file: {e}")
-                return
+            st.error(f"❌ Failed to parse transaction file: {e}")
+            return
 
     st.markdown("---")
 
     # -------------------- BUDGET UPLOAD --------------------
     st.markdown("### 📊 Upload Budget File (category, budget)")
-    budget_file = st.file_uploader("Choose Budget File", type=["csv"], key="budget_upload")
+    budget_file = st.file_uploader(
+        "Choose Budget File",
+        type=["csv"],
+        key="budget_upload",
+    )
 
-    if budget_file:
+    if budget_file is not None:
         filename = f"budget_{uuid.uuid4().hex}.csv"
         path = os.path.join("data", filename)
 
@@ -127,9 +138,18 @@ def show():
         df_budget.columns = df_budget.columns.str.strip().str.lower()
 
         if not {"category", "budget"}.issubset(df_budget.columns):
-            st.error("❌ Budget CSV must contain 'category' and 'budget' columns.")
+            st.error("❌ Budget CSV must contain exactly: category, budget")
             return
 
+        # ---- NORMALIZE CATEGORY ----
+        df_budget["category"] = (
+            df_budget["category"]
+            .astype(str)
+            .str.strip()
+            .str.lower()
+        )
+
+        # ---- STORE FOR CHARTS ----
         st.session_state["budget_df"] = df_budget
 
         try:
@@ -137,32 +157,32 @@ def show():
             cursor = conn.cursor()
 
             current_month = pd.Timestamp.now().strftime("%Y-%m")
-            inserted = 0
 
             records = [
-            (
-                current_user,
-                current_month,
-                row["category"],
-                float(row["budget"]),
-            )
-            for _, row in df_budget.iterrows()
-        ]
+                (
+                    current_user,
+                    current_month,
+                    row["category"],
+                    float(row["budget"]),
+                )
+                for _, row in df_budget.iterrows()
+            ]
 
             cursor.executemany(
                 """
-                INSERT INTO budgets (username, month, category, budget_amount)
+                INSERT INTO budgets
+                (username, month, category, budget_amount)
                 VALUES (%s, %s, %s, %s)
-                ON DUPLICATE KEY UPDATE budget_amount = VALUES(budget_amount)
+                ON DUPLICATE KEY UPDATE
+                    budget_amount = VALUES(budget_amount)
                 """,
-                records
+                records,
             )
 
             conn.commit()
             conn.close()
 
-            st.success(f"✅ {cursor.rowcount} budget items saved for {current_user}")
-
+            st.success(f"✅ {cursor.rowcount} budget items saved")
 
         except Exception as e:
             st.error(f"❌ Failed to store budget data: {e}")
