@@ -16,7 +16,7 @@ def show():
     # Defensive copy
     df = df.copy()
 
-    # Ensure datetime (Streamlit Cloud safe)
+    # ---------------- NORMALIZE CORE COLUMNS ----------------
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     df = df.dropna(subset=["date"])
 
@@ -24,9 +24,15 @@ def show():
         st.error("❌ No valid dates found in the data.")
         return
 
-    # Month string (NO .dt accessor)
-    df["month"] = df["date"].apply(
-        lambda d: f"{d.year:04d}-{d.month:02d}"
+    # ✅ SINGLE SOURCE OF TRUTH FOR MONTH
+    df["month"] = df["date"].dt.strftime("%Y-%m")
+
+    # ✅ NORMALIZE CATEGORY EARLY (CRITICAL)
+    df["category"] = (
+        df["category"]
+        .astype(str)
+        .str.strip()
+        .str.lower()
     )
 
     # ---------------- FILTER OPTIONS ----------------
@@ -35,13 +41,7 @@ def show():
         key=lambda x: pd.Period(x, freq="M")
     )
 
-    available_categories = sorted(
-        df["category"]
-        .astype(str)
-        .str.strip()
-        .str.lower()
-        .unique()
-    )
+    available_categories = sorted(df["category"].unique())
 
     if not available_months:
         st.warning("⚠️ No valid months available.")

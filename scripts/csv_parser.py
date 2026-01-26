@@ -1,6 +1,7 @@
 import pandas as pd
 import difflib
 
+
 def match_column(possible_names, df_columns, cutoff=0.6):
     for name in possible_names:
         match = difflib.get_close_matches(
@@ -20,7 +21,12 @@ def parse_csv(file_path: str) -> pd.DataFrame:
     - amount      (POSITIVE ONLY)
     - description (string)
     - category    (string)
+
+    NOTE:
+    - Does NOT generate 'month'
+    - Month must be derived later (visualize.py)
     """
+
     try:
         df = pd.read_csv(file_path).copy()
 
@@ -37,8 +43,6 @@ def parse_csv(file_path: str) -> pd.DataFrame:
             raise ValueError("❌ Could not detect a date column.")
 
         df["date"] = pd.to_datetime(df[date_col], errors="coerce")
-        # Add this right after df["date"] = pd.to_datetime(...)
-        df["month"] = df["date"].dt.strftime("%b %Y") # e.g., "Jan 2026"
 
         # ---------------- AMOUNT ----------------
         withdrawal_col = match_column(
@@ -76,6 +80,7 @@ def parse_csv(file_path: str) -> pd.DataFrame:
             ["description", "narration", "details", "remarks", "transaction_details"],
             columns,
         )
+
         df["description"] = (
             df[desc_col].astype(str) if desc_col else "no description"
         )

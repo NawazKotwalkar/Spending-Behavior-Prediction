@@ -74,7 +74,6 @@ def predict_spending(model, month: str, category: str):
     )
 
     X_new = pd.get_dummies(X_new)
-
     # Align with training columns
     for col in model.feature_names_in_:
         if col not in X_new.columns:
