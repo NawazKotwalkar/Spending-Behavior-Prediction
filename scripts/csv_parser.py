@@ -37,6 +37,8 @@ def parse_csv(file_path: str) -> pd.DataFrame:
             raise ValueError("❌ Could not detect a date column.")
 
         df["date"] = pd.to_datetime(df[date_col], errors="coerce")
+        # Add this right after df["date"] = pd.to_datetime(...)
+        df["month"] = df["date"].dt.strftime("%b %Y") # e.g., "Jan 2026"
 
         # ---------------- AMOUNT ----------------
         withdrawal_col = match_column(

@@ -83,18 +83,21 @@ def generate_budget_vs_actual_chart(df, selected_month, chart_type):
     if budget_df is None or budget_df.empty:
         return None, None
 
+# Use a case-insensitive check to ensure the month matches
     actual_df = (
-        df[df["month"] == selected_month]
+        df[df["month"].str.lower() == selected_month.lower()]
         .groupby("category", as_index=False)["amount"]
         .sum()
         .rename(columns={"amount": "actual"})
     )
 
-    budget_df["category"] = budget_df["category"].str.lower().str.strip()
-    actual_df["category"] = actual_df["category"].str.lower().str.strip()
-
+    # Inside generate_budget_vs_actual_chart
+    budget_df["category"] = budget_df["category"].astype(str).str.lower().str.strip()
+    actual_df["category"] = actual_df["category"].astype(str).str.lower().str.strip()
     merged = pd.merge(budget_df, actual_df, on="category", how="left")
     merged["actual"] = merged["actual"].fillna(0)
+    if merged["actual"].sum() == 0:
+        st.info(f"No spending recorded for {selected_month} in the budgeted categories.")
     if merged.empty:
         return None, None
 
