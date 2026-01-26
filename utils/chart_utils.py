@@ -96,8 +96,13 @@ def generate_budget_vs_actual_chart(df, selected_month, chart_type):
     actual_df["category"] = actual_df["category"].astype(str).str.lower().str.strip()
     merged = pd.merge(budget_df, actual_df, on="category", how="left")
     merged["actual"] = merged["actual"].fillna(0)
-    if merged["actual"].sum() == 0:
-        st.info(f"No spending recorded for {selected_month} in the budgeted categories.")
+    if actual_df.empty:
+        st.warning(f"No transactions recorded for {selected_month}.")
+    elif merged["actual"].sum() == 0:
+        st.warning(
+            f"Transactions exist in {selected_month}, "
+            "but none match the budgeted categories."
+        )
     if merged.empty:
         return None, None
 
