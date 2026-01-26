@@ -12,20 +12,32 @@ from utils.budget_manager import get_all_budgets
 def show():
     st.subheader("📥 Export Report")
 
-    # ✅ Use canonical dataframe
+    # -------------------- LOAD DATA --------------------
     if "df" not in st.session_state:
         st.warning("Please upload a transaction file first.")
         return
 
-    df = st.session_state["df"]
+    df = st.session_state["df"].copy()
 
-    # Metrics from prediction page
+    # -------------------- ENSURE MONTH COLUMN --------------------
+    if "month" not in df.columns:
+        df["date"] = pd.to_datetime(df["date"], errors="coerce")
+        df = df.dropna(subset=["date"])
+        df["month"] = df["date"].dt.to_period("M").astype(str)
+
+    # -------------------- METRICS FROM PREDICT --------------------
     mae = st.session_state.get("mae")
     rmse = st.session_state.get("rmse")
 
-    # Defaults
+    # -------------------- DEFAULT SELECTIONS --------------------
     available_months = sorted(df["month"].unique())
-    selected_months = available_months[-3:] if len(available_months) >= 3 else available_months
+
+    selected_months = (
+        available_months[-3:]
+        if len(available_months) >= 3
+        else available_months
+    )
+
     selected_categories = sorted(df["category"].unique())
 
     df_filtered = df[
@@ -59,7 +71,7 @@ def report_ui(
         with tempfile.TemporaryDirectory() as tmpdir:
             chart_paths = []
 
-            # ----- Main Charts -----
+            # -------------------- MAIN CHARTS --------------------
             for ct in [
                 "Bar (Monthly Breakdown)",
                 "Pie (Selected Months)",
@@ -81,7 +93,7 @@ def report_ui(
                 except Exception as e:
                     st.warning(f"Could not render {ct}: {e}")
 
-            # ----- Budget vs Actual -----
+            # -------------------- BUDGET vs ACTUAL --------------------
             try:
                 chart, _ = generate_budget_vs_actual_chart(
                     df, selected_months[-1], selected_chart_type
@@ -94,7 +106,7 @@ def report_ui(
             except Exception as e:
                 st.warning(f"Budget vs Actual chart error: {e}")
 
-            # ----- Generate PDF -----
+            # -------------------- GENERATE PDF --------------------
             report_path = generate_pdf_report(
                 df=df,
                 selected_month=selected_months[-1],

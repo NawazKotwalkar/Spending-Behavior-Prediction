@@ -4,82 +4,87 @@ from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 
-def train_model(df: pd.DataFrame):
+def train_models_by_category(monthly_df: pd.DataFrame):
     """
-    Train a FAST & LIGHT Ridge regression model.
-    Expected input df columns:
-    date | category | amount
+    Train one model per category using lag features.
+
+    Expected columns:
+    month | category | total_spend
+
+    Returns:
+    models_dict, metrics_dict
     """
 
-    df = df.copy()
+    df = monthly_df.copy()
 
-    # --- Basic cleanup ---
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    df = df.dropna(subset=["date", "category", "amount"])
+    required_cols = {"month", "category", "total_spend"}
+    if not required_cols.issubset(df.columns):
+        raise ValueError(f"Expected columns {required_cols}")
 
-    # --- Monthly aggregation ---
-    df["month"] = df["date"].dt.to_period("M").astype(str)
+    df["month"] = pd.PeriodIndex(df["month"], freq="M")
+    df = df.sort_values(["category", "month"])
 
-    grouped = (
-        df.groupby(["month", "category"])["amount"]
-        .sum()
-        .abs()
-        .reset_index(name="total_spend")
+    models = {}
+    metrics = {}
+
+    for category, g in df.groupby("category"):
+        g = g.copy()
+
+        # --- Lag features ---
+        g["lag_1"] = g["total_spend"].shift(1)
+        g["roll_3"] = g["total_spend"].rolling(3).mean()
+
+        g = g.dropna()
+
+        if len(g) < 3:
+            continue
+
+        X = g[["lag_1", "roll_3"]]
+        y = g["total_spend"]
+
+        split_idx = max(1, int(len(g) * 0.8))
+
+        X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
+        y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
+
+        model = Ridge(alpha=1.0)
+        model.fit(X_train, y_train)
+
+        if len(X_test) > 0:
+            preds = model.predict(X_test)
+            mae = mean_absolute_error(y_test, preds)
+            rmse = np.sqrt(mean_squared_error(y_test, preds))
+        else:
+            mae, rmse = 0.0, 0.0
+
+        models[category] = model
+        metrics[category] = (mae, rmse)
+
+    return models, metrics
+def predict_next_month(models, history_df, category: str):
+    """
+    Predict next month's spending for a category.
+    """
+
+    if category not in models:
+        return 0.0
+
+    g = (
+        history_df[history_df["category"] == category]
+        .sort_values("month")
+        .tail(3)
     )
 
-    if grouped.empty:
-        return None, (0.0, 0.0)
+    if len(g) < 2:
+        return float(g["total_spend"].mean()) if not g.empty else 0.0
 
-    # --- Encode time numerically ---
-    grouped["month_idx"] = pd.PeriodIndex(
-        grouped["month"], freq="M"
-    ).astype(int)
+    lag_1 = g.iloc[-1]["total_spend"]
+    roll_3 = g["total_spend"].mean()
 
-    X = grouped[["month_idx", "category"]]
-    X = pd.get_dummies(X, columns=["category"], drop_first=True)
+    X_new = pd.DataFrame([{
+        "lag_1": lag_1,
+        "roll_3": roll_3
+    }])
 
-    y = grouped["total_spend"]
-
-    # --- Time-based split (NO shuffle) ---
-    split_idx = max(1, int(len(grouped) * 0.8))
-    X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
-    y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
-
-    # --- Ridge model (FAST) ---
-    model = Ridge(alpha=1.0)
-    model.fit(X_train, y_train)
-
-    if len(X_test) > 0:
-        preds = model.predict(X_test)
-        mae = mean_absolute_error(y_test, preds)
-        rmse = np.sqrt(mean_squared_error(y_test, preds))
-    else:
-        mae, rmse = 0.0, 0.0
-
-    return model, (mae, rmse)
-
-
-def predict_spending(model, month: str, category: str):
-    """
-    Predict spend for a future month & category.
-    """
-
-    month_idx = pd.Period(month, freq="M").ordinal
-
-    X_new = pd.DataFrame(
-        [{
-            "month_idx": month_idx,
-            "category": category
-        }]
-    )
-
-    X_new = pd.get_dummies(X_new)
-    # Align with training columns
-    for col in model.feature_names_in_:
-        if col not in X_new.columns:
-            X_new[col] = 0
-
-    X_new = X_new[model.feature_names_in_]
-
-    prediction = model.predict(X_new)[0]
-    return float(max(0, prediction))
+    pred = models[category].predict(X_new)[0]
+    return float(max(0, pred))

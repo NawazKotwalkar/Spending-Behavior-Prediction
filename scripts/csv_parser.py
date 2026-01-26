@@ -13,20 +13,6 @@ def match_column(possible_names, df_columns, cutoff=0.6):
 
 
 def parse_csv(file_path: str) -> pd.DataFrame:
-    """
-    Robust CSV parser for bank statements.
-
-    Guarantees canonical columns:
-    - date        (datetime)
-    - amount      (POSITIVE ONLY)
-    - description (string)
-    - category    (string)
-
-    NOTE:
-    - Does NOT generate 'month'
-    - Month must be derived later (visualize.py)
-    """
-
     try:
         df = pd.read_csv(file_path).copy()
 
@@ -45,35 +31,18 @@ def parse_csv(file_path: str) -> pd.DataFrame:
         df["date"] = pd.to_datetime(df[date_col], errors="coerce")
 
         # ---------------- AMOUNT ----------------
-        withdrawal_col = match_column(
-            ["withdrawal", "debit", "withdrawal_amt", "dr_amount"],
-            columns,
-        )
-        deposit_col = match_column(
-            ["deposit", "credit", "deposit_amt", "cr_amount"],
-            columns,
+        if "amount" not in df.columns:
+            raise ValueError("CSV must contain an 'amount' column")
+
+        df["amount"] = (
+            df["amount"]
+            .astype(str)
+            .str.replace(",", "", regex=False)
+            .str.replace("₹", "", regex=False)
+            .str.strip()
         )
 
-        if withdrawal_col and deposit_col:
-            amount = (
-                pd.to_numeric(df[deposit_col], errors="coerce").fillna(0)
-                - pd.to_numeric(df[withdrawal_col], errors="coerce").fillna(0)
-            )
-        elif withdrawal_col:
-            amount = -pd.to_numeric(df[withdrawal_col], errors="coerce")
-        elif deposit_col:
-            amount = pd.to_numeric(df[deposit_col], errors="coerce")
-        else:
-            amount_col = match_column(
-                ["amount", "transaction_amount", "amt", "value"],
-                columns,
-            )
-            if not amount_col:
-                raise ValueError("❌ Could not detect an amount column.")
-            amount = pd.to_numeric(df[amount_col], errors="coerce")
-
-        # ✅ FORCE POSITIVE AMOUNT (FINAL RULE)
-        df["amount"] = amount.abs()
+        df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
 
         # ---------------- DESCRIPTION ----------------
         desc_col = match_column(

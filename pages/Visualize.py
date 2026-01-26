@@ -1,111 +1,172 @@
 import streamlit as st
 import pandas as pd
-from utils.chart_utils import generate_chart, display_budget_vs_actual
+import altair as alt
+
+from utils.chart_utils import generate_budget_vs_actual_chart
+
+CHART_HEIGHT = 420
 
 
 def show():
-    st.subheader("📊 Visualize Spending")
+    st.title("📊 Visualize Spending")
 
-    # Always read canonical dataframe from session_state
-    df = st.session_state.get("df")
+    # ==================== REQUIRE UPLOADED DATA ====================
+    if "df" not in st.session_state:
+        st.info("Upload a transaction file to view visualizations.")
+        st.stop()
 
-    if df is None or df.empty:
-        st.warning("⚠️ No transaction data available. Please upload a file first.")
-        return
-
-    # Defensive copy
-    df = df.copy()
-
-    # ---------------- NORMALIZE CORE COLUMNS ----------------
-    df["date"] = pd.to_datetime(df["date"], errors="coerce")
-    df = df.dropna(subset=["date"])
+    df = st.session_state["df"].copy()
 
     if df.empty:
-        st.error("❌ No valid dates found in the data.")
-        return
+        st.info("No transactions found in uploaded file.")
+        st.stop()
 
-    # ✅ SINGLE SOURCE OF TRUTH FOR MONTH
-    df["month"] = df["date"].dt.strftime("%Y-%m")
+    # ==================== PREP DATA ====================
+    df["date"] = pd.to_datetime(df["date"])
+    df["month"] = df["date"].dt.to_period("M").astype(str)
 
-    # ✅ NORMALIZE CATEGORY EARLY (CRITICAL)
+    # Normalize categories (CRITICAL)
     df["category"] = (
         df["category"]
         .astype(str)
-        .str.strip()
         .str.lower()
+        .str.strip()
     )
 
-    # ---------------- FILTER OPTIONS ----------------
-    available_months = sorted(
-        df["month"].unique(),
-        key=lambda x: pd.Period(x, freq="M")
+    # ==================== FILTERS ====================
+    st.markdown("### 🔎 Filters")
+
+    # Categories ONLY from dataset
+    categories = sorted(df["category"].unique())
+
+    selected_categories = st.multiselect(
+        "Select Category(s)",
+        categories,
+        default=categories
     )
 
-    available_categories = sorted(df["category"].unique())
+    # Months ONLY from selected categories
+    months = sorted(
+        df[df["category"].isin(selected_categories)]["month"].unique()
+    )
 
-    if not available_months:
-        st.warning("⚠️ No valid months available.")
-        return
+    if not months:
+        st.warning("No months available for selected categories.")
+        st.stop()
 
     selected_months = st.multiselect(
         "Select Month(s)",
-        available_months,
-        default=[available_months[-1]],
+        months,
+        default=months[-1:]
     )
 
-    selected_categories = st.multiselect(
-        "Select Categories",
-        available_categories,
-        default=available_categories,
-    )
-
-    # ---------------- FILTER DATA ----------------
-    df_filtered = df[df["month"].isin(selected_months)]
-
-    if selected_categories:
-        df_filtered = df_filtered[df_filtered["category"].isin(selected_categories)]
+    # Final filtered dataset
+    df_filtered = df[
+        df["category"].isin(selected_categories)
+        & df["month"].isin(selected_months)
+    ]
 
     if df_filtered.empty:
-        st.info("ℹ️ No data for selected filters.")
-        return
+        st.warning("No data for selected filters.")
+        st.stop()
 
-    # ---------------- CHART SELECTION ----------------
-    chart_option = st.selectbox(
-        "Chart Type",
-        [
-            "Bar (Monthly Breakdown)",
-            "Line (Daily Trend)",
-            "Pie (Selected Months)",
-            "Bar (Total by Category)",
-            "Multi-Month Category Comparison",
-        ],
+    # ==================== BAR CHART ====================
+    st.markdown("### 📊 Spending by Category")
+
+    bar_data = df_filtered.groupby("category", as_index=False)["amount"].sum()
+
+    bar_chart = alt.Chart(bar_data).mark_bar().encode(
+        x=alt.X("category:N", sort="-y"),
+        y=alt.Y("amount:Q", title="Amount"),
+        tooltip=["category", "amount"]
+    ).properties(height=CHART_HEIGHT)
+
+    st.altair_chart(bar_chart, use_container_width=True)
+
+    # ==================== PIE CHART ====================
+    st.markdown("### 🥧 Spending Distribution")
+
+    if len(selected_categories) == 1 and len(selected_months) > 1:
+        pie_data = df_filtered.groupby("month", as_index=False)["amount"].sum()
+        color_field = "month:N"
+        title = "Distribution by Month"
+    else:
+        pie_data = df_filtered.groupby("category", as_index=False)["amount"].sum()
+        color_field = "category:N"
+        title = "Distribution by Category"
+
+    pie_chart = alt.Chart(pie_data).mark_arc().encode(
+        theta="amount:Q",
+        color=color_field,
+        tooltip=[color_field.split(":")[0], "amount"]
+    ).properties(height=CHART_HEIGHT, title=title)
+
+    st.altair_chart(pie_chart, use_container_width=True)
+
+    # ==================== LINE CHART ====================
+    st.markdown("### 📈 Monthly Spending Trend")
+
+    line_data = (
+        df_filtered
+        .groupby("month", as_index=False)["amount"]
+        .sum()
+        .sort_values("month")
     )
 
-    chart = generate_chart(
-        df_filtered,
-        chart_option,
+    line_chart = alt.Chart(line_data).mark_line(point=True).encode(
+        x=alt.X("month:N", title="Month"),
+        y=alt.Y("amount:Q", title="Total Spending"),
+        tooltip=["month", "amount"]
+    ).properties(height=CHART_HEIGHT)
+
+    st.altair_chart(line_chart, use_container_width=True)
+
+    # ==================== STACKED BAR ====================
+    st.markdown("### 🧱 Category Contribution per Month")
+
+    stacked_data = (
+        df_filtered
+        .groupby(["month", "category"], as_index=False)["amount"]
+        .sum()
+    )
+
+    stacked_chart = alt.Chart(stacked_data).mark_bar().encode(
+        x=alt.X("month:N", title="Month"),
+        y=alt.Y("amount:Q", stack="zero", title="Amount"),
+        color=alt.Color("category:N", legend=alt.Legend(title="Category")),
+        tooltip=["month", "category", "amount"]
+    ).properties(height=CHART_HEIGHT)
+
+    st.altair_chart(stacked_chart, use_container_width=True)
+
+    # ==================== BUDGET VS ACTUAL ====================
+    st.markdown("### 💰 Budget vs Actual")
+
+    budget_month = st.selectbox(
+        "Select Month for Budget Comparison",
         selected_months,
-        selected_categories,
+        index=len(selected_months) - 1,
+    )
+
+    chart, merged = generate_budget_vs_actual_chart(
+        df=df_filtered,
+        selected_month=budget_month,
+        chart_type="bar",
     )
 
     if chart is not None:
         st.altair_chart(chart, use_container_width=True)
-    else:
-        st.warning("⚠️ Unable to generate chart with current selection.")
 
-    # ---------------- BUDGET VS ACTUAL ----------------
-    st.markdown("---")
-    st.subheader("📊 Budget vs Actual Spending")
-    st.caption("All values shown as positive amounts")
+        with st.expander("📋 Show Budget vs Actual Data"):
+            st.dataframe(
+                merged.sort_values("difference", ascending=False),
+                use_container_width=True,
+            )
 
-    budget_month = st.selectbox(
-        "Select Month for Budget Comparison",
-        available_months,
-        index=len(available_months) - 1,
-    )
+    # ==================== TRANSACTION TABLE ====================
+    st.markdown("### 📋 Transactions Table")
 
-    display_budget_vs_actual(
-        df=df,
-        selected_month=budget_month,
-        chart_type="bar",
+    st.dataframe(
+        df_filtered.sort_values("date", ascending=False),
+        use_container_width=True,
     )

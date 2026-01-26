@@ -1,0 +1,1001 @@
+date,amount,description,category
+2024-04-12,17560,House Rent,Rent
+2024-06-28,3743,Movie Ticket,Entertainment
+2024-04-02,3950,Water Bill,Utilities
+2024-01-15,1414,Movie Ticket,Entertainment
+2024-04-16,2998,Swiggy Order,Food
+2024-03-12,2721,Flipkart Order,Shopping
+2024-01-21,16065,House Rent,Rent
+2024-04-12,17343,House Rent,Rent
+2024-05-01,3862,Metro Card,Transport
+2024-03-15,4770,Amazon Purchase,Shopping
+2024-03-28,2292,Uber Ride,Transport
+2024-04-26,4133,Electricity Bill,Utilities
+2024-04-09,3210,Fuel,Transport
+2024-04-13,2726,Zomato,Food
+2024-05-31,2135,Flipkart Order,Shopping
+2024-05-10,519,Netflix Subscription,Entertainment
+2024-05-29,1220,Misc Expense,Uncategorized
+2024-02-22,1050,Netflix Subscription,Entertainment
+2024-01-02,1957,Zomato,Food
+2024-03-28,1965,Netflix Subscription,Entertainment
+2024-06-06,17853,House Rent,Rent
+2024-02-07,3328,Fuel,Transport
+2024-05-09,2471,Uber Ride,Transport
+2024-01-21,194,Movie Ticket,Entertainment
+2024-06-09,893,Flipkart Order,Shopping
+2024-02-27,17116,House Rent,Rent
+2024-01-22,3019,Water Bill,Utilities
+2024-03-29,914,Flipkart Order,Shopping
+2024-02-18,15362,House Rent,Rent
+2024-02-28,3105,Swiggy Order,Food
+2024-06-18,1739,Swiggy Order,Food
+2024-01-15,4551,Water Bill,Utilities
+2024-06-23,3035,Misc Expense,Uncategorized
+2024-02-20,3277,Restaurant Bill,Food
+2024-04-17,3549,Netflix Subscription,Entertainment
+2024-02-24,3633,Restaurant Bill,Food
+2024-03-04,3897,Misc Expense,Uncategorized
+2024-05-10,1892,Misc Expense,Uncategorized
+2024-02-20,3517,Swiggy Order,Food
+2024-05-14,3130,Water Bill,Utilities
+2024-01-21,1954,Misc Expense,Uncategorized
+2024-03-13,17708,House Rent,Rent
+2024-06-15,16332,House Rent,Rent
+2024-01-18,18507,House Rent,Rent
+2024-05-11,674,Movie Ticket,Entertainment
+2024-03-29,2222,Metro Card,Transport
+2024-02-29,3381,Misc Expense,Uncategorized
+2024-01-14,3700,Fuel,Transport
+2024-01-09,4958,Amazon Purchase,Shopping
+2024-03-30,2090,Swiggy Order,Food
+2024-02-22,4480,Swiggy Order,Food
+2024-05-09,2813,Flipkart Order,Shopping
+2024-03-24,3220,Swiggy Order,Food
+2024-04-01,788,Swiggy Order,Food
+2024-04-20,1824,Flipkart Order,Shopping
+2024-06-20,1892,Restaurant Bill,Food
+2024-01-08,15989,House Rent,Rent
+2024-06-23,1051,Netflix Subscription,Entertainment
+2024-02-04,2817,Water Bill,Utilities
+2024-03-21,1600,Swiggy Order,Food
+2024-06-12,2165,Fuel,Transport
+2024-02-19,18057,House Rent,Rent
+2024-04-13,2261,Uber Ride,Transport
+2024-05-11,3435,Fuel,Transport
+2024-01-02,4995,Electricity Bill,Utilities
+2024-05-13,16901,House Rent,Rent
+2024-02-23,154,Uber Ride,Transport
+2024-04-15,3562,Zomato,Food
+2024-01-04,4508,Amazon Purchase,Shopping
+2024-02-23,2590,Restaurant Bill,Food
+2024-05-25,3410,Metro Card,Transport
+2024-02-13,3775,Amazon Purchase,Shopping
+2024-06-10,2243,Zomato,Food
+2024-01-14,1411,Misc Expense,Uncategorized
+2024-04-04,4083,Electricity Bill,Utilities
+2024-02-17,15164,House Rent,Rent
+2024-01-15,922,Zomato,Food
+2024-02-09,4525,Electricity Bill,Utilities
+2024-03-22,3256,Restaurant Bill,Food
+2024-04-20,1014,Swiggy Order,Food
+2024-02-22,4277,Flipkart Order,Shopping
+2024-01-24,3694,Electricity Bill,Utilities
+2024-06-02,16409,House Rent,Rent
+2024-05-03,18190,House Rent,Rent
+2024-02-10,15804,House Rent,Rent
+2024-06-05,3677,Metro Card,Transport
+2024-01-15,4788,Movie Ticket,Entertainment
+2024-02-14,2206,Water Bill,Utilities
+2024-03-05,4931,Water Bill,Utilities
+2024-03-29,3380,Fuel,Transport
+2024-03-11,17599,House Rent,Rent
+2024-01-09,3530,Amazon Purchase,Shopping
+2024-03-28,2641,Zomato,Food
+2024-05-08,541,Misc Expense,Uncategorized
+2024-05-15,2757,Misc Expense,Uncategorized
+2024-03-03,15074,House Rent,Rent
+2024-05-18,4024,Water Bill,Utilities
+2024-03-21,2181,Electricity Bill,Utilities
+2024-05-15,4783,Amazon Purchase,Shopping
+2024-06-11,441,Zomato,Food
+2024-06-11,745,Swiggy Order,Food
+2024-02-02,554,Movie Ticket,Entertainment
+2024-05-02,3069,Amazon Purchase,Shopping
+2024-01-05,2781,Metro Card,Transport
+2024-02-10,3167,Metro Card,Transport
+2024-01-28,3876,Misc Expense,Uncategorized
+2024-05-14,4989,Restaurant Bill,Food
+2024-03-12,2158,Restaurant Bill,Food
+2024-01-12,16136,House Rent,Rent
+2024-06-10,1350,Movie Ticket,Entertainment
+2024-02-02,4250,Misc Expense,Uncategorized
+2024-02-17,4601,Flipkart Order,Shopping
+2024-05-30,1885,Netflix Subscription,Entertainment
+2024-03-02,1862,Restaurant Bill,Food
+2024-02-06,4560,Electricity Bill,Utilities
+2024-04-08,253,Swiggy Order,Food
+2024-06-20,2443,Uber Ride,Transport
+2024-04-13,160,Netflix Subscription,Entertainment
+2024-02-04,4220,Flipkart Order,Shopping
+2024-04-10,3669,Restaurant Bill,Food
+2024-06-23,1558,Movie Ticket,Entertainment
+2024-05-10,17322,House Rent,Rent
+2024-01-01,19090,House Rent,Rent
+2024-01-05,429,Misc Expense,Uncategorized
+2024-05-21,4207,Amazon Purchase,Shopping
+2024-04-12,4162,Fuel,Transport
+2024-01-27,2521,Electricity Bill,Utilities
+2024-05-16,3826,Flipkart Order,Shopping
+2024-01-15,146,Amazon Purchase,Shopping
+2024-03-30,500,Restaurant Bill,Food
+2024-02-11,3257,Swiggy Order,Food
+2024-05-03,3953,Misc Expense,Uncategorized
+2024-06-27,4332,Restaurant Bill,Food
+2024-03-03,926,Zomato,Food
+2024-04-05,3394,Misc Expense,Uncategorized
+2024-02-21,3142,Electricity Bill,Utilities
+2024-04-05,18561,House Rent,Rent
+2024-05-11,1282,Flipkart Order,Shopping
+2024-05-30,17667,House Rent,Rent
+2024-05-22,230,Zomato,Food
+2024-06-19,4378,Flipkart Order,Shopping
+2024-01-29,4059,Fuel,Transport
+2024-02-05,1020,Uber Ride,Transport
+2024-01-13,4211,Netflix Subscription,Entertainment
+2024-06-08,3621,Metro Card,Transport
+2024-03-11,645,Zomato,Food
+2024-03-26,1904,Restaurant Bill,Food
+2024-01-28,913,Fuel,Transport
+2024-03-06,17032,House Rent,Rent
+2024-06-18,4943,Uber Ride,Transport
+2024-02-14,1871,Flipkart Order,Shopping
+2024-03-02,4461,Misc Expense,Uncategorized
+2024-05-13,3530,Restaurant Bill,Food
+2024-01-28,3860,Uber Ride,Transport
+2024-01-28,475,Zomato,Food
+2024-04-17,15145,House Rent,Rent
+2024-02-13,531,Swiggy Order,Food
+2024-03-24,2732,Zomato,Food
+2024-01-30,1063,Swiggy Order,Food
+2024-03-15,1928,Zomato,Food
+2024-05-07,4905,Netflix Subscription,Entertainment
+2024-04-01,3515,Misc Expense,Uncategorized
+2024-05-08,4967,Uber Ride,Transport
+2024-04-30,984,Swiggy Order,Food
+2024-01-27,3501,Water Bill,Utilities
+2024-04-30,2365,Swiggy Order,Food
+2024-04-25,3945,Zomato,Food
+2024-01-03,826,Water Bill,Utilities
+2024-04-12,2013,Electricity Bill,Utilities
+2024-06-03,2566,Fuel,Transport
+2024-05-16,102,Movie Ticket,Entertainment
+2024-03-02,4976,Water Bill,Utilities
+2024-06-13,3260,Restaurant Bill,Food
+2024-02-20,1480,Flipkart Order,Shopping
+2024-06-20,2782,Swiggy Order,Food
+2024-05-31,1318,Swiggy Order,Food
+2024-02-28,1455,Misc Expense,Uncategorized
+2024-04-27,4235,Restaurant Bill,Food
+2024-06-08,1518,Misc Expense,Uncategorized
+2024-04-05,4233,Restaurant Bill,Food
+2024-06-28,18972,House Rent,Rent
+2024-04-22,4649,Zomato,Food
+2024-03-02,1811,Misc Expense,Uncategorized
+2024-02-21,4788,Amazon Purchase,Shopping
+2024-01-12,417,Swiggy Order,Food
+2024-02-08,1691,Flipkart Order,Shopping
+2024-05-09,4030,Flipkart Order,Shopping
+2024-05-10,1385,Electricity Bill,Utilities
+2024-04-22,1804,Uber Ride,Transport
+2024-04-10,17604,House Rent,Rent
+2024-04-22,4551,Flipkart Order,Shopping
+2024-03-21,4895,Flipkart Order,Shopping
+2024-04-22,656,Restaurant Bill,Food
+2024-01-02,4621,Electricity Bill,Utilities
+2024-05-09,3608,Restaurant Bill,Food
+2024-02-23,2229,Netflix Subscription,Entertainment
+2024-03-27,688,Water Bill,Utilities
+2024-05-08,2085,Fuel,Transport
+2024-05-26,18117,House Rent,Rent
+2024-05-05,17064,House Rent,Rent
+2024-05-09,4895,Zomato,Food
+2024-02-22,4870,Swiggy Order,Food
+2024-06-20,3626,Restaurant Bill,Food
+2024-06-08,4002,Metro Card,Transport
+2024-06-08,17382,House Rent,Rent
+2024-03-08,377,Misc Expense,Uncategorized
+2024-05-02,1987,Misc Expense,Uncategorized
+2024-05-24,4926,Movie Ticket,Entertainment
+2024-02-07,985,Zomato,Food
+2024-01-24,19569,House Rent,Rent
+2024-03-09,2453,Zomato,Food
+2024-04-25,786,Misc Expense,Uncategorized
+2024-04-07,3847,Misc Expense,Uncategorized
+2024-05-18,2528,Flipkart Order,Shopping
+2024-05-23,15028,House Rent,Rent
+2024-04-06,4099,Zomato,Food
+2024-05-03,3709,Movie Ticket,Entertainment
+2024-03-10,3456,Zomato,Food
+2024-04-02,138,Misc Expense,Uncategorized
+2024-01-03,2304,Uber Ride,Transport
+2024-05-27,16823,House Rent,Rent
+2024-06-12,3255,Zomato,Food
+2024-05-26,3878,Amazon Purchase,Shopping
+2024-03-30,3611,Misc Expense,Uncategorized
+2024-05-26,4126,Uber Ride,Transport
+2024-05-27,1782,Misc Expense,Uncategorized
+2024-04-05,19665,House Rent,Rent
+2024-02-21,3333,Electricity Bill,Utilities
+2024-06-09,892,Swiggy Order,Food
+2024-06-16,2355,Movie Ticket,Entertainment
+2024-05-07,1084,Metro Card,Transport
+2024-02-08,619,Electricity Bill,Utilities
+2024-03-22,3733,Movie Ticket,Entertainment
+2024-04-13,4544,Netflix Subscription,Entertainment
+2024-05-08,3999,Swiggy Order,Food
+2024-01-11,626,Misc Expense,Uncategorized
+2024-06-26,3444,Metro Card,Transport
+2024-05-30,1863,Flipkart Order,Shopping
+2024-06-07,1116,Flipkart Order,Shopping
+2024-02-11,216,Zomato,Food
+2024-04-08,494,Flipkart Order,Shopping
+2024-01-07,2868,Misc Expense,Uncategorized
+2024-05-23,2113,Zomato,Food
+2024-03-30,16389,House Rent,Rent
+2024-04-21,265,Misc Expense,Uncategorized
+2024-02-29,15728,House Rent,Rent
+2024-04-22,3596,Water Bill,Utilities
+2024-01-02,3862,Zomato,Food
+2024-05-08,3036,Swiggy Order,Food
+2024-02-17,691,Amazon Purchase,Shopping
+2024-05-19,813,Uber Ride,Transport
+2024-02-06,101,Movie Ticket,Entertainment
+2024-06-08,4144,Uber Ride,Transport
+2024-01-09,1017,Swiggy Order,Food
+2024-04-08,15089,House Rent,Rent
+2024-05-26,4338,Flipkart Order,Shopping
+2024-02-17,527,Restaurant Bill,Food
+2024-05-10,416,Restaurant Bill,Food
+2024-05-27,2156,Movie Ticket,Entertainment
+2024-05-31,2370,Misc Expense,Uncategorized
+2024-02-23,815,Metro Card,Transport
+2024-04-29,3489,Water Bill,Utilities
+2024-06-09,350,Netflix Subscription,Entertainment
+2024-05-31,307,Fuel,Transport
+2024-04-25,121,Metro Card,Transport
+2024-03-15,4209,Fuel,Transport
+2024-04-22,2234,Zomato,Food
+2024-06-12,1366,Amazon Purchase,Shopping
+2024-06-14,849,Restaurant Bill,Food
+2024-04-13,16927,House Rent,Rent
+2024-03-24,4890,Electricity Bill,Utilities
+2024-04-21,2089,Zomato,Food
+2024-04-08,4744,Movie Ticket,Entertainment
+2024-06-01,3020,Misc Expense,Uncategorized
+2024-04-02,854,Metro Card,Transport
+2024-05-25,452,Amazon Purchase,Shopping
+2024-05-07,258,Electricity Bill,Utilities
+2024-04-19,4711,Uber Ride,Transport
+2024-03-22,1055,Movie Ticket,Entertainment
+2024-02-23,4803,Swiggy Order,Food
+2024-06-11,3911,Flipkart Order,Shopping
+2024-06-17,3079,Water Bill,Utilities
+2024-06-09,4950,Metro Card,Transport
+2024-03-08,4832,Flipkart Order,Shopping
+2024-02-02,629,Swiggy Order,Food
+2024-05-21,3014,Amazon Purchase,Shopping
+2024-01-21,4673,Movie Ticket,Entertainment
+2024-02-17,101,Zomato,Food
+2024-05-27,4105,Swiggy Order,Food
+2024-05-07,1625,Metro Card,Transport
+2024-05-15,113,Electricity Bill,Utilities
+2024-05-14,3255,Uber Ride,Transport
+2024-05-24,3316,Flipkart Order,Shopping
+2024-05-07,17040,House Rent,Rent
+2024-02-02,16252,House Rent,Rent
+2024-06-24,4655,Swiggy Order,Food
+2024-04-24,3474,Swiggy Order,Food
+2024-04-28,3878,Zomato,Food
+2024-01-22,2991,Metro Card,Transport
+2024-06-06,2460,Electricity Bill,Utilities
+2024-02-07,3278,Swiggy Order,Food
+2024-04-18,2312,Netflix Subscription,Entertainment
+2024-02-20,1679,Movie Ticket,Entertainment
+2024-01-08,1842,Fuel,Transport
+2024-01-27,1056,Amazon Purchase,Shopping
+2024-01-27,1068,Zomato,Food
+2024-01-21,2944,Metro Card,Transport
+2024-01-30,4393,Amazon Purchase,Shopping
+2024-04-06,1108,Restaurant Bill,Food
+2024-01-28,4685,Flipkart Order,Shopping
+2024-04-20,17289,House Rent,Rent
+2024-03-01,225,Misc Expense,Uncategorized
+2024-02-17,3968,Misc Expense,Uncategorized
+2024-05-26,3349,Electricity Bill,Utilities
+2024-01-04,18923,House Rent,Rent
+2024-02-04,4503,Zomato,Food
+2024-02-18,991,Movie Ticket,Entertainment
+2024-01-17,1464,Flipkart Order,Shopping
+2024-06-20,4712,Swiggy Order,Food
+2024-06-06,1298,Misc Expense,Uncategorized
+2024-02-15,2574,Amazon Purchase,Shopping
+2024-04-26,4149,Flipkart Order,Shopping
+2024-01-06,402,Flipkart Order,Shopping
+2024-04-08,1086,Flipkart Order,Shopping
+2024-05-03,3172,Misc Expense,Uncategorized
+2024-02-06,3224,Zomato,Food
+2024-01-24,3773,Amazon Purchase,Shopping
+2024-04-02,19033,House Rent,Rent
+2024-02-15,674,Misc Expense,Uncategorized
+2024-04-04,4883,Misc Expense,Uncategorized
+2024-04-08,3330,Netflix Subscription,Entertainment
+2024-04-25,3781,Movie Ticket,Entertainment
+2024-06-08,1767,Metro Card,Transport
+2024-06-09,3653,Flipkart Order,Shopping
+2024-03-07,950,Netflix Subscription,Entertainment
+2024-05-07,1467,Electricity Bill,Utilities
+2024-01-18,15454,House Rent,Rent
+2024-01-25,3247,Restaurant Bill,Food
+2024-02-23,1016,Amazon Purchase,Shopping
+2024-02-27,16440,House Rent,Rent
+2024-03-07,3438,Swiggy Order,Food
+2024-04-13,2989,Flipkart Order,Shopping
+2024-06-22,1126,Netflix Subscription,Entertainment
+2024-01-24,2601,Metro Card,Transport
+2024-04-23,1277,Misc Expense,Uncategorized
+2024-02-01,4499,Swiggy Order,Food
+2024-06-23,2930,Flipkart Order,Shopping
+2024-03-26,17390,House Rent,Rent
+2024-05-30,2511,Water Bill,Utilities
+2024-05-06,1104,Misc Expense,Uncategorized
+2024-06-03,1114,Electricity Bill,Utilities
+2024-05-09,814,Electricity Bill,Utilities
+2024-01-17,19419,House Rent,Rent
+2024-04-13,4665,Misc Expense,Uncategorized
+2024-06-09,1063,Zomato,Food
+2024-05-16,18635,House Rent,Rent
+2024-02-12,205,Amazon Purchase,Shopping
+2024-06-24,4197,Flipkart Order,Shopping
+2024-02-08,17137,House Rent,Rent
+2024-06-18,1386,Restaurant Bill,Food
+2024-01-26,3754,Flipkart Order,Shopping
+2024-04-08,15444,House Rent,Rent
+2024-02-19,15035,House Rent,Rent
+2024-06-01,1898,Metro Card,Transport
+2024-05-31,1808,Water Bill,Utilities
+2024-01-13,1400,Amazon Purchase,Shopping
+2024-02-29,3197,Electricity Bill,Utilities
+2024-05-14,2525,Zomato,Food
+2024-02-26,17631,House Rent,Rent
+2024-02-05,3325,Netflix Subscription,Entertainment
+2024-06-21,19145,House Rent,Rent
+2024-01-20,3373,Movie Ticket,Entertainment
+2024-03-05,3140,Electricity Bill,Utilities
+2024-01-08,1684,Uber Ride,Transport
+2024-05-23,4868,Movie Ticket,Entertainment
+2024-05-21,761,Swiggy Order,Food
+2024-04-24,2566,Restaurant Bill,Food
+2024-05-22,1646,Flipkart Order,Shopping
+2024-04-01,1200,Zomato,Food
+2024-04-07,869,Flipkart Order,Shopping
+2024-03-06,19358,House Rent,Rent
+2024-02-01,1677,Amazon Purchase,Shopping
+2024-03-26,4108,Fuel,Transport
+2024-02-20,3451,Amazon Purchase,Shopping
+2024-06-01,1341,Restaurant Bill,Food
+2024-03-03,16190,House Rent,Rent
+2024-05-04,4939,Movie Ticket,Entertainment
+2024-05-29,172,Flipkart Order,Shopping
+2024-02-27,16914,House Rent,Rent
+2024-02-27,18046,House Rent,Rent
+2024-03-26,3813,Swiggy Order,Food
+2024-02-18,3710,Flipkart Order,Shopping
+2024-06-28,1835,Flipkart Order,Shopping
+2024-06-18,2528,Flipkart Order,Shopping
+2024-03-10,2874,Metro Card,Transport
+2024-01-15,17661,House Rent,Rent
+2024-02-23,1594,Flipkart Order,Shopping
+2024-04-10,3983,Metro Card,Transport
+2024-01-08,1968,Swiggy Order,Food
+2024-02-22,1116,Amazon Purchase,Shopping
+2024-02-29,2593,Zomato,Food
+2024-04-17,3059,Fuel,Transport
+2024-01-05,1779,Restaurant Bill,Food
+2024-04-12,19443,House Rent,Rent
+2024-01-06,4825,Misc Expense,Uncategorized
+2024-04-18,4043,Misc Expense,Uncategorized
+2024-04-25,385,Netflix Subscription,Entertainment
+2024-04-03,4651,Metro Card,Transport
+2024-02-16,1112,Netflix Subscription,Entertainment
+2024-04-08,1623,Water Bill,Utilities
+2024-02-24,4676,Movie Ticket,Entertainment
+2024-06-16,1701,Swiggy Order,Food
+2024-02-21,17817,House Rent,Rent
+2024-05-23,2596,Misc Expense,Uncategorized
+2024-01-13,16725,House Rent,Rent
+2024-04-23,4506,Metro Card,Transport
+2024-05-03,2290,Zomato,Food
+2024-04-15,343,Misc Expense,Uncategorized
+2024-06-06,660,Restaurant Bill,Food
+2024-05-26,1926,Zomato,Food
+2024-05-24,233,Flipkart Order,Shopping
+2024-04-29,172,Restaurant Bill,Food
+2024-03-03,19225,House Rent,Rent
+2024-01-19,4461,Zomato,Food
+2024-04-01,4359,Electricity Bill,Utilities
+2024-02-27,1233,Amazon Purchase,Shopping
+2024-03-30,3046,Water Bill,Utilities
+2024-04-26,1148,Misc Expense,Uncategorized
+2024-03-02,3064,Flipkart Order,Shopping
+2024-01-23,4323,Swiggy Order,Food
+2024-05-06,642,Uber Ride,Transport
+2024-05-16,3136,Metro Card,Transport
+2024-05-19,2819,Zomato,Food
+2024-05-08,3301,Zomato,Food
+2024-02-27,2053,Amazon Purchase,Shopping
+2024-05-01,3950,Metro Card,Transport
+2024-01-01,556,Netflix Subscription,Entertainment
+2024-02-03,4344,Uber Ride,Transport
+2024-04-05,3665,Zomato,Food
+2024-05-05,1738,Swiggy Order,Food
+2024-04-27,1482,Swiggy Order,Food
+2024-02-17,919,Swiggy Order,Food
+2024-03-29,3402,Flipkart Order,Shopping
+2024-04-26,867,Netflix Subscription,Entertainment
+2024-05-08,2239,Restaurant Bill,Food
+2024-01-16,1864,Fuel,Transport
+2024-03-09,18716,House Rent,Rent
+2024-01-22,2393,Zomato,Food
+2024-04-02,1000,Netflix Subscription,Entertainment
+2024-03-16,2109,Swiggy Order,Food
+2024-06-02,2485,Swiggy Order,Food
+2024-05-23,3142,Swiggy Order,Food
+2024-06-27,17442,House Rent,Rent
+2024-03-26,4824,Fuel,Transport
+2024-01-29,4819,Metro Card,Transport
+2024-03-09,3904,Movie Ticket,Entertainment
+2024-02-16,18493,House Rent,Rent
+2024-04-03,17444,House Rent,Rent
+2024-05-23,3291,Swiggy Order,Food
+2024-06-24,15571,House Rent,Rent
+2024-03-25,341,Swiggy Order,Food
+2024-02-08,814,Swiggy Order,Food
+2024-04-09,2347,Fuel,Transport
+2024-02-02,4026,Swiggy Order,Food
+2024-04-10,2248,Fuel,Transport
+2024-01-23,4282,Swiggy Order,Food
+2024-01-10,3606,Netflix Subscription,Entertainment
+2024-03-09,1768,Swiggy Order,Food
+2024-04-09,2050,Metro Card,Transport
+2024-02-03,16674,House Rent,Rent
+2024-06-28,2646,Misc Expense,Uncategorized
+2024-05-17,2589,Restaurant Bill,Food
+2024-05-26,2137,Zomato,Food
+2024-04-05,1673,Movie Ticket,Entertainment
+2024-01-01,1346,Swiggy Order,Food
+2024-03-09,2476,Movie Ticket,Entertainment
+2024-01-04,17993,House Rent,Rent
+2024-01-16,1713,Zomato,Food
+2024-01-24,477,Swiggy Order,Food
+2024-03-20,469,Fuel,Transport
+2024-01-02,18747,House Rent,Rent
+2024-05-07,15769,House Rent,Rent
+2024-06-08,4083,Amazon Purchase,Shopping
+2024-03-24,622,Water Bill,Utilities
+2024-05-31,1035,Swiggy Order,Food
+2024-05-19,4683,Amazon Purchase,Shopping
+2024-06-26,3797,Metro Card,Transport
+2024-06-11,2561,Misc Expense,Uncategorized
+2024-05-03,3343,Misc Expense,Uncategorized
+2024-02-02,2260,Zomato,Food
+2024-06-09,1667,Amazon Purchase,Shopping
+2024-06-27,15038,House Rent,Rent
+2024-06-19,3090,Electricity Bill,Utilities
+2024-04-10,18468,House Rent,Rent
+2024-01-12,401,Zomato,Food
+2024-03-07,4858,Netflix Subscription,Entertainment
+2024-03-05,4451,Amazon Purchase,Shopping
+2024-06-09,1468,Fuel,Transport
+2024-06-16,3968,Misc Expense,Uncategorized
+2024-03-14,4408,Movie Ticket,Entertainment
+2024-02-12,3778,Netflix Subscription,Entertainment
+2024-02-13,4283,Fuel,Transport
+2024-01-29,17325,House Rent,Rent
+2024-05-20,1476,Uber Ride,Transport
+2024-01-12,1753,Fuel,Transport
+2024-04-04,1404,Amazon Purchase,Shopping
+2024-02-15,461,Netflix Subscription,Entertainment
+2024-05-09,1384,Flipkart Order,Shopping
+2024-02-04,1955,Water Bill,Utilities
+2024-03-21,2620,Electricity Bill,Utilities
+2024-03-30,1022,Flipkart Order,Shopping
+2024-01-08,2647,Flipkart Order,Shopping
+2024-04-02,2749,Metro Card,Transport
+2024-06-02,2356,Water Bill,Utilities
+2024-03-30,3589,Swiggy Order,Food
+2024-06-10,2734,Movie Ticket,Entertainment
+2024-04-24,3995,Netflix Subscription,Entertainment
+2024-04-14,2279,Metro Card,Transport
+2024-05-14,16043,House Rent,Rent
+2024-02-27,326,Movie Ticket,Entertainment
+2024-04-23,2123,Zomato,Food
+2024-03-15,2185,Zomato,Food
+2024-06-05,2420,Swiggy Order,Food
+2024-04-29,3392,Flipkart Order,Shopping
+2024-06-12,4531,Flipkart Order,Shopping
+2024-01-21,2683,Zomato,Food
+2024-06-12,3359,Flipkart Order,Shopping
+2024-05-17,3490,Electricity Bill,Utilities
+2024-04-10,763,Zomato,Food
+2024-05-31,15541,House Rent,Rent
+2024-06-25,3074,Misc Expense,Uncategorized
+2024-04-08,531,Electricity Bill,Utilities
+2024-02-05,19278,House Rent,Rent
+2024-04-05,1269,Netflix Subscription,Entertainment
+2024-05-31,16136,House Rent,Rent
+2024-05-30,1426,Amazon Purchase,Shopping
+2024-02-06,1119,Misc Expense,Uncategorized
+2024-01-12,19256,House Rent,Rent
+2024-04-22,2110,Fuel,Transport
+2024-01-13,2225,Amazon Purchase,Shopping
+2024-01-23,4797,Netflix Subscription,Entertainment
+2024-04-08,599,Amazon Purchase,Shopping
+2024-04-14,17097,House Rent,Rent
+2024-01-30,3796,Restaurant Bill,Food
+2024-01-17,2857,Flipkart Order,Shopping
+2024-04-22,2710,Uber Ride,Transport
+2024-03-02,1549,Misc Expense,Uncategorized
+2024-03-24,4776,Water Bill,Utilities
+2024-04-21,2103,Electricity Bill,Utilities
+2024-03-26,803,Water Bill,Utilities
+2024-05-20,1725,Metro Card,Transport
+2024-01-19,3078,Restaurant Bill,Food
+2024-06-25,2759,Uber Ride,Transport
+2024-04-09,785,Movie Ticket,Entertainment
+2024-05-19,1719,Flipkart Order,Shopping
+2024-05-26,1531,Flipkart Order,Shopping
+2024-03-16,1465,Zomato,Food
+2024-01-09,15162,House Rent,Rent
+2024-01-28,15269,House Rent,Rent
+2024-05-07,2114,Zomato,Food
+2024-02-21,681,Uber Ride,Transport
+2024-03-23,1819,Swiggy Order,Food
+2024-04-20,2397,Zomato,Food
+2024-05-23,789,Amazon Purchase,Shopping
+2024-04-26,3241,Fuel,Transport
+2024-03-09,771,Water Bill,Utilities
+2024-04-08,3826,Flipkart Order,Shopping
+2024-05-19,1549,Electricity Bill,Utilities
+2024-01-25,4360,Water Bill,Utilities
+2024-06-28,3752,Misc Expense,Uncategorized
+2024-05-02,2452,Flipkart Order,Shopping
+2024-02-22,4579,Uber Ride,Transport
+2024-05-30,524,Misc Expense,Uncategorized
+2024-05-23,994,Swiggy Order,Food
+2024-02-26,15597,House Rent,Rent
+2024-02-08,1787,Amazon Purchase,Shopping
+2024-04-18,2190,Zomato,Food
+2024-02-11,4372,Zomato,Food
+2024-06-15,1617,Metro Card,Transport
+2024-05-21,3688,Uber Ride,Transport
+2024-05-01,3237,Misc Expense,Uncategorized
+2024-05-12,4832,Restaurant Bill,Food
+2024-06-11,443,Movie Ticket,Entertainment
+2024-03-15,4766,Movie Ticket,Entertainment
+2024-05-25,1954,Fuel,Transport
+2024-03-16,2424,Fuel,Transport
+2024-01-09,1191,Restaurant Bill,Food
+2024-03-14,2891,Movie Ticket,Entertainment
+2024-05-24,2775,Water Bill,Utilities
+2024-01-07,3148,Electricity Bill,Utilities
+2024-06-22,4642,Flipkart Order,Shopping
+2024-05-20,4070,Flipkart Order,Shopping
+2024-06-16,1677,Misc Expense,Uncategorized
+2024-06-18,1914,Metro Card,Transport
+2024-05-16,4502,Water Bill,Utilities
+2024-06-26,107,Zomato,Food
+2024-01-27,15475,House Rent,Rent
+2024-05-01,4754,Netflix Subscription,Entertainment
+2024-01-05,4663,Zomato,Food
+2024-01-29,2922,Flipkart Order,Shopping
+2024-06-13,358,Amazon Purchase,Shopping
+2024-06-14,4235,Electricity Bill,Utilities
+2024-03-23,712,Uber Ride,Transport
+2024-05-15,3790,Movie Ticket,Entertainment
+2024-04-18,18013,House Rent,Rent
+2024-03-05,2691,Misc Expense,Uncategorized
+2024-03-26,4058,Restaurant Bill,Food
+2024-05-24,674,Misc Expense,Uncategorized
+2024-03-11,3704,Uber Ride,Transport
+2024-02-14,1383,Movie Ticket,Entertainment
+2024-05-11,1629,Misc Expense,Uncategorized
+2024-02-05,3811,Fuel,Transport
+2024-03-10,2500,Swiggy Order,Food
+2024-06-07,3169,Zomato,Food
+2024-01-19,3647,Netflix Subscription,Entertainment
+2024-04-17,3657,Water Bill,Utilities
+2024-06-15,3090,Fuel,Transport
+2024-03-31,2872,Amazon Purchase,Shopping
+2024-03-30,16154,House Rent,Rent
+2024-01-19,1085,Water Bill,Utilities
+2024-02-08,289,Zomato,Food
+2024-05-05,1815,Netflix Subscription,Entertainment
+2024-06-21,4533,Misc Expense,Uncategorized
+2024-05-20,2426,Netflix Subscription,Entertainment
+2024-05-05,1774,Flipkart Order,Shopping
+2024-02-27,1030,Electricity Bill,Utilities
+2024-05-27,1189,Swiggy Order,Food
+2024-03-01,17295,House Rent,Rent
+2024-05-06,2601,Restaurant Bill,Food
+2024-04-14,3930,Water Bill,Utilities
+2024-06-15,17238,House Rent,Rent
+2024-01-01,15441,House Rent,Rent
+2024-05-10,4728,Metro Card,Transport
+2024-04-01,1048,Swiggy Order,Food
+2024-04-22,559,Flipkart Order,Shopping
+2024-06-01,4038,Swiggy Order,Food
+2024-02-25,2357,Restaurant Bill,Food
+2024-06-09,2554,Flipkart Order,Shopping
+2024-06-14,2697,Zomato,Food
+2024-04-26,939,Swiggy Order,Food
+2024-05-13,4017,Restaurant Bill,Food
+2024-02-27,380,Uber Ride,Transport
+2024-02-13,4349,Metro Card,Transport
+2024-06-21,4857,Misc Expense,Uncategorized
+2024-06-08,3046,Electricity Bill,Utilities
+2024-06-21,2431,Netflix Subscription,Entertainment
+2024-03-01,3889,Restaurant Bill,Food
+2024-02-16,4828,Netflix Subscription,Entertainment
+2024-05-28,17990,House Rent,Rent
+2024-03-20,1560,Metro Card,Transport
+2024-04-27,385,Uber Ride,Transport
+2024-06-12,3547,Swiggy Order,Food
+2024-05-26,19916,House Rent,Rent
+2024-01-20,17381,House Rent,Rent
+2024-05-25,167,Movie Ticket,Entertainment
+2024-02-16,4108,Water Bill,Utilities
+2024-02-18,4890,Misc Expense,Uncategorized
+2024-01-14,2579,Metro Card,Transport
+2024-05-22,878,Restaurant Bill,Food
+2024-06-07,1685,Misc Expense,Uncategorized
+2024-01-01,1448,Amazon Purchase,Shopping
+2024-04-26,18940,House Rent,Rent
+2024-02-23,2144,Amazon Purchase,Shopping
+2024-04-27,1158,Uber Ride,Transport
+2024-01-03,2627,Water Bill,Utilities
+2024-05-23,442,Amazon Purchase,Shopping
+2024-01-12,3759,Metro Card,Transport
+2024-03-14,1996,Fuel,Transport
+2024-01-16,19915,House Rent,Rent
+2024-04-11,1673,Uber Ride,Transport
+2024-05-31,4374,Amazon Purchase,Shopping
+2024-06-04,2495,Restaurant Bill,Food
+2024-04-26,678,Zomato,Food
+2024-01-08,2107,Flipkart Order,Shopping
+2024-05-01,1892,Amazon Purchase,Shopping
+2024-04-01,19005,House Rent,Rent
+2024-06-12,3893,Swiggy Order,Food
+2024-03-30,19875,House Rent,Rent
+2024-05-15,3551,Amazon Purchase,Shopping
+2024-02-29,2240,Uber Ride,Transport
+2024-06-26,241,Fuel,Transport
+2024-01-28,4896,Amazon Purchase,Shopping
+2024-04-10,1313,Zomato,Food
+2024-02-10,4797,Water Bill,Utilities
+2024-06-03,2068,Uber Ride,Transport
+2024-05-24,2529,Zomato,Food
+2024-06-09,19912,House Rent,Rent
+2024-06-05,1912,Flipkart Order,Shopping
+2024-05-20,15182,House Rent,Rent
+2024-02-15,1617,Electricity Bill,Utilities
+2024-02-04,1456,Misc Expense,Uncategorized
+2024-05-13,3728,Misc Expense,Uncategorized
+2024-03-22,18691,House Rent,Rent
+2024-04-24,4651,Movie Ticket,Entertainment
+2024-02-16,3439,Amazon Purchase,Shopping
+2024-06-01,3472,Amazon Purchase,Shopping
+2024-01-10,3421,Movie Ticket,Entertainment
+2024-02-25,273,Netflix Subscription,Entertainment
+2024-01-30,826,Swiggy Order,Food
+2024-04-18,4133,Zomato,Food
+2024-01-05,2786,Amazon Purchase,Shopping
+2024-04-28,1874,Amazon Purchase,Shopping
+2024-02-02,3908,Uber Ride,Transport
+2024-04-27,2802,Fuel,Transport
+2024-03-05,3968,Movie Ticket,Entertainment
+2024-05-25,1942,Flipkart Order,Shopping
+2024-06-25,1009,Flipkart Order,Shopping
+2024-01-11,870,Flipkart Order,Shopping
+2024-03-25,4824,Netflix Subscription,Entertainment
+2024-01-26,486,Misc Expense,Uncategorized
+2024-03-03,4108,Metro Card,Transport
+2024-03-26,2382,Fuel,Transport
+2024-02-28,2098,Uber Ride,Transport
+2024-01-27,4769,Swiggy Order,Food
+2024-06-25,1531,Amazon Purchase,Shopping
+2024-06-09,2424,Flipkart Order,Shopping
+2024-04-07,2758,Flipkart Order,Shopping
+2024-04-14,4120,Swiggy Order,Food
+2024-04-08,3359,Water Bill,Utilities
+2024-05-08,2342,Restaurant Bill,Food
+2024-05-28,3234,Electricity Bill,Utilities
+2024-02-24,2141,Restaurant Bill,Food
+2024-01-06,16141,House Rent,Rent
+2024-04-04,2043,Netflix Subscription,Entertainment
+2024-05-12,17980,House Rent,Rent
+2024-04-11,1691,Amazon Purchase,Shopping
+2024-01-03,3319,Netflix Subscription,Entertainment
+2024-01-23,18273,House Rent,Rent
+2024-02-22,1542,Flipkart Order,Shopping
+2024-06-13,18546,House Rent,Rent
+2024-03-23,3028,Uber Ride,Transport
+2024-05-24,1029,Amazon Purchase,Shopping
+2024-03-25,3375,Water Bill,Utilities
+2024-03-18,2000,Amazon Purchase,Shopping
+2024-04-19,1499,Misc Expense,Uncategorized
+2024-01-01,3750,Misc Expense,Uncategorized
+2024-02-20,1278,Misc Expense,Uncategorized
+2024-06-21,1357,Restaurant Bill,Food
+2024-01-04,17309,House Rent,Rent
+2024-04-22,4440,Netflix Subscription,Entertainment
+2024-02-01,17169,House Rent,Rent
+2024-02-03,223,Zomato,Food
+2024-04-01,18158,House Rent,Rent
+2024-04-04,2516,Metro Card,Transport
+2024-03-12,2036,Restaurant Bill,Food
+2024-02-08,16301,House Rent,Rent
+2024-06-02,2452,Uber Ride,Transport
+2024-06-10,2490,Uber Ride,Transport
+2024-04-27,1477,Metro Card,Transport
+2024-01-03,19857,House Rent,Rent
+2024-05-02,482,Zomato,Food
+2024-02-19,15299,House Rent,Rent
+2024-01-12,1622,Water Bill,Utilities
+2024-02-23,1403,Restaurant Bill,Food
+2024-05-12,1234,Misc Expense,Uncategorized
+2024-02-26,3270,Water Bill,Utilities
+2024-05-24,1337,Water Bill,Utilities
+2024-04-21,2934,Flipkart Order,Shopping
+2024-02-16,2667,Swiggy Order,Food
+2024-05-30,2760,Swiggy Order,Food
+2024-03-25,2146,Fuel,Transport
+2024-05-21,1240,Misc Expense,Uncategorized
+2024-03-06,1808,Flipkart Order,Shopping
+2024-03-15,3832,Metro Card,Transport
+2024-06-27,575,Netflix Subscription,Entertainment
+2024-04-12,657,Swiggy Order,Food
+2024-06-14,982,Zomato,Food
+2024-02-07,4890,Metro Card,Transport
+2024-02-19,16610,House Rent,Rent
+2024-04-07,4594,Restaurant Bill,Food
+2024-03-22,2908,Flipkart Order,Shopping
+2024-01-30,18536,House Rent,Rent
+2024-03-19,3902,Water Bill,Utilities
+2024-03-31,3922,Fuel,Transport
+2024-06-27,4358,Amazon Purchase,Shopping
+2024-02-21,1963,Swiggy Order,Food
+2024-06-14,2484,Electricity Bill,Utilities
+2024-03-19,2590,Water Bill,Utilities
+2024-01-30,1824,Restaurant Bill,Food
+2024-04-15,2867,Misc Expense,Uncategorized
+2024-02-20,3520,Movie Ticket,Entertainment
+2024-03-21,3737,Restaurant Bill,Food
+2024-05-12,376,Metro Card,Transport
+2024-01-29,18752,House Rent,Rent
+2024-05-11,15695,House Rent,Rent
+2024-05-17,3334,Metro Card,Transport
+2024-05-24,2411,Misc Expense,Uncategorized
+2024-03-14,3659,Misc Expense,Uncategorized
+2024-01-17,17694,House Rent,Rent
+2024-03-24,1672,Swiggy Order,Food
+2024-03-09,4336,Netflix Subscription,Entertainment
+2024-02-03,2335,Netflix Subscription,Entertainment
+2024-01-06,356,Amazon Purchase,Shopping
+2024-02-22,3275,Water Bill,Utilities
+2024-05-05,19897,House Rent,Rent
+2024-02-12,2114,Zomato,Food
+2024-04-24,3755,Restaurant Bill,Food
+2024-04-20,3856,Swiggy Order,Food
+2024-05-30,3744,Amazon Purchase,Shopping
+2024-03-20,2522,Zomato,Food
+2024-04-04,4645,Water Bill,Utilities
+2024-04-27,2258,Movie Ticket,Entertainment
+2024-05-23,2442,Zomato,Food
+2024-01-08,1073,Fuel,Transport
+2024-05-11,1150,Restaurant Bill,Food
+2024-04-13,1688,Restaurant Bill,Food
+2024-05-11,536,Electricity Bill,Utilities
+2024-01-25,3958,Restaurant Bill,Food
+2024-04-05,2484,Flipkart Order,Shopping
+2024-06-03,1689,Movie Ticket,Entertainment
+2024-04-02,1111,Zomato,Food
+2024-06-08,17307,House Rent,Rent
+2024-06-26,1135,Restaurant Bill,Food
+2024-03-01,4549,Metro Card,Transport
+2024-05-01,1364,Netflix Subscription,Entertainment
+2024-02-20,1909,Metro Card,Transport
+2024-05-26,17341,House Rent,Rent
+2024-01-21,917,Water Bill,Utilities
+2024-01-05,988,Metro Card,Transport
+2024-04-01,4828,Restaurant Bill,Food
+2024-06-18,19232,House Rent,Rent
+2024-03-01,918,Water Bill,Utilities
+2024-01-22,297,Uber Ride,Transport
+2024-05-28,18492,House Rent,Rent
+2024-03-10,2048,Restaurant Bill,Food
+2024-01-01,17010,House Rent,Rent
+2024-05-12,4218,Electricity Bill,Utilities
+2024-01-12,15234,House Rent,Rent
+2024-03-30,3707,Amazon Purchase,Shopping
+2024-02-15,3623,Netflix Subscription,Entertainment
+2024-02-03,4728,Movie Ticket,Entertainment
+2024-06-25,1416,Fuel,Transport
+2024-03-18,2687,Swiggy Order,Food
+2024-02-14,3474,Electricity Bill,Utilities
+2024-06-03,326,Zomato,Food
+2024-03-13,15891,House Rent,Rent
+2024-01-26,2357,Electricity Bill,Utilities
+2024-02-16,2178,Flipkart Order,Shopping
+2024-04-30,4524,Netflix Subscription,Entertainment
+2024-02-25,2105,Water Bill,Utilities
+2024-04-03,1978,Swiggy Order,Food
+2024-04-16,4076,Flipkart Order,Shopping
+2024-03-03,1039,Restaurant Bill,Food
+2024-02-17,19917,House Rent,Rent
+2024-03-01,3423,Swiggy Order,Food
+2024-03-21,2196,Swiggy Order,Food
+2024-01-26,2200,Zomato,Food
+2024-02-05,3848,Amazon Purchase,Shopping
+2024-01-01,3941,Misc Expense,Uncategorized
+2024-01-08,774,Zomato,Food
+2024-04-22,2761,Fuel,Transport
+2024-04-08,4736,Metro Card,Transport
+2024-06-28,3359,Metro Card,Transport
+2024-02-16,18904,House Rent,Rent
+2024-05-06,18227,House Rent,Rent
+2024-02-25,17512,House Rent,Rent
+2024-01-14,3966,Metro Card,Transport
+2024-01-28,2322,Flipkart Order,Shopping
+2024-03-18,3562,Water Bill,Utilities
+2024-05-09,4860,Swiggy Order,Food
+2024-04-18,2666,Movie Ticket,Entertainment
+2024-06-02,18709,House Rent,Rent
+2024-01-14,4679,Flipkart Order,Shopping
+2024-02-25,4502,Fuel,Transport
+2024-04-24,4420,Restaurant Bill,Food
+2024-01-07,3216,Flipkart Order,Shopping
+2024-01-03,15643,House Rent,Rent
+2024-04-20,588,Electricity Bill,Utilities
+2024-05-30,3376,Misc Expense,Uncategorized
+2024-04-16,1341,Netflix Subscription,Entertainment
+2024-01-18,492,Flipkart Order,Shopping
+2024-02-07,3502,Zomato,Food
+2024-04-24,377,Misc Expense,Uncategorized
+2024-01-15,18270,House Rent,Rent
+2024-04-28,560,Zomato,Food
+2024-01-28,3583,Water Bill,Utilities
+2024-02-08,1172,Amazon Purchase,Shopping
+2024-01-17,3273,Misc Expense,Uncategorized
+2024-03-26,16723,House Rent,Rent
+2024-05-05,4881,Fuel,Transport
+2024-02-13,2152,Swiggy Order,Food
+2024-01-25,2395,Uber Ride,Transport
+2024-05-24,2569,Zomato,Food
+2024-01-13,2883,Fuel,Transport
+2024-01-25,2600,Uber Ride,Transport
+2024-03-08,2745,Flipkart Order,Shopping
+2024-05-17,2449,Movie Ticket,Entertainment
+2024-03-07,1216,Metro Card,Transport
+2024-04-18,3406,Uber Ride,Transport
+2024-05-25,3923,Amazon Purchase,Shopping
+2024-04-20,1646,Misc Expense,Uncategorized
+2024-04-20,18563,House Rent,Rent
+2024-02-03,4775,Misc Expense,Uncategorized
+2024-04-20,2843,Misc Expense,Uncategorized
+2024-01-08,2593,Movie Ticket,Entertainment
+2024-06-16,456,Amazon Purchase,Shopping
+2024-04-22,969,Fuel,Transport
+2024-03-23,1383,Flipkart Order,Shopping
+2024-02-11,3742,Electricity Bill,Utilities
+2024-06-17,16296,House Rent,Rent
+2024-04-10,344,Misc Expense,Uncategorized
+2024-01-06,1029,Misc Expense,Uncategorized
+2024-06-28,2509,Netflix Subscription,Entertainment
+2024-01-26,4382,Fuel,Transport
+2024-03-04,2901,Misc Expense,Uncategorized
+2024-02-28,3215,Movie Ticket,Entertainment
+2024-04-18,3719,Zomato,Food
+2024-04-30,18583,House Rent,Rent
+2024-02-02,2318,Amazon Purchase,Shopping
+2024-05-29,2469,Zomato,Food
+2024-01-21,2937,Fuel,Transport
+2024-03-10,4544,Uber Ride,Transport
+2024-04-21,1296,Uber Ride,Transport
+2024-01-04,1561,Swiggy Order,Food
+2024-04-03,15666,House Rent,Rent
+2024-03-15,2276,Misc Expense,Uncategorized
+2024-03-02,4522,Swiggy Order,Food
+2024-04-03,15979,House Rent,Rent
+2024-04-04,3796,Zomato,Food
+2024-05-31,2865,Metro Card,Transport
+2024-02-24,215,Amazon Purchase,Shopping
+2024-05-16,15692,House Rent,Rent
+2024-05-10,18008,House Rent,Rent
+2024-01-31,253,Zomato,Food
+2024-02-09,3799,Misc Expense,Uncategorized
+2024-02-05,3886,Restaurant Bill,Food
+2024-05-31,2013,Netflix Subscription,Entertainment
+2024-01-06,2501,Misc Expense,Uncategorized
+2024-03-06,2880,Amazon Purchase,Shopping
+2024-03-15,2971,Fuel,Transport
+2024-01-04,2735,Amazon Purchase,Shopping
+2024-03-19,1232,Netflix Subscription,Entertainment
+2024-05-13,17038,House Rent,Rent
+2024-04-27,4747,Misc Expense,Uncategorized
+2024-04-22,2279,Metro Card,Transport
+2024-04-03,1522,Water Bill,Utilities
+2024-06-27,4416,Uber Ride,Transport
+2024-03-02,16391,House Rent,Rent
+2024-03-19,15614,House Rent,Rent
+2024-05-15,3676,Zomato,Food
+2024-01-26,15270,House Rent,Rent
+2024-06-27,1490,Electricity Bill,Utilities
+2024-06-21,3707,Water Bill,Utilities
+2024-02-13,18075,House Rent,Rent
+2024-05-12,2580,Swiggy Order,Food
+2024-03-10,3024,Fuel,Transport
+2024-06-02,4376,Zomato,Food
+2024-04-27,3932,Netflix Subscription,Entertainment
+2024-03-08,1480,Zomato,Food
+2024-01-19,3256,Movie Ticket,Entertainment
+2024-01-20,15383,House Rent,Rent
+2024-04-22,2087,Restaurant Bill,Food
+2024-05-19,3209,Misc Expense,Uncategorized
+2024-02-16,2898,Movie Ticket,Entertainment
+2024-01-01,3514,Uber Ride,Transport
+2024-03-30,2849,Flipkart Order,Shopping
+2024-05-21,305,Water Bill,Utilities
+2024-03-04,3911,Restaurant Bill,Food
+2024-02-07,2651,Misc Expense,Uncategorized
+2024-02-06,2808,Movie Ticket,Entertainment
+2024-05-05,4186,Restaurant Bill,Food
+2024-05-18,4638,Metro Card,Transport
+2024-04-09,19349,House Rent,Rent
+2024-03-17,3651,Amazon Purchase,Shopping
+2024-01-03,2932,Swiggy Order,Food
+2024-06-09,252,Flipkart Order,Shopping
+2024-05-13,2900,Swiggy Order,Food
+2024-06-26,2710,Uber Ride,Transport
+2024-01-10,17536,House Rent,Rent
+2024-01-05,4299,Metro Card,Transport
+2024-05-30,2014,Restaurant Bill,Food
+2024-05-17,506,Electricity Bill,Utilities
+2024-06-20,1761,Swiggy Order,Food
+2024-05-09,18489,House Rent,Rent
+2024-01-13,2220,Electricity Bill,Utilities
+2024-06-16,19357,House Rent,Rent
+2024-05-09,1638,Amazon Purchase,Shopping
+2024-03-24,1199,Swiggy Order,Food
+2024-03-05,2330,Amazon Purchase,Shopping
+2024-03-03,1597,Uber Ride,Transport
+2024-04-10,468,Zomato,Food
+2024-03-13,2635,Restaurant Bill,Food
+2024-01-17,1393,Netflix Subscription,Entertainment
+2024-01-09,3486,Electricity Bill,Utilities
+2024-05-22,1092,Metro Card,Transport
+2024-05-31,2486,Misc Expense,Uncategorized
+2024-02-07,3507,Uber Ride,Transport
+2024-06-11,1955,Electricity Bill,Utilities
+2024-04-03,2863,Netflix Subscription,Entertainment
+2024-04-04,1581,Restaurant Bill,Food
+2024-02-18,551,Electricity Bill,Utilities
+2024-03-09,3193,Flipkart Order,Shopping
+2024-03-02,2666,Amazon Purchase,Shopping
+2024-06-26,15374,House Rent,Rent
+2024-03-18,3162,Flipkart Order,Shopping
+2024-04-26,4695,Misc Expense,Uncategorized
+2024-04-29,212,Flipkart Order,Shopping
+2024-05-16,2478,Swiggy Order,Food
+2024-06-10,3049,Swiggy Order,Food
+2024-03-16,17616,House Rent,Rent

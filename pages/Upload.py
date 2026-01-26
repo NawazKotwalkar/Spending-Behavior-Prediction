@@ -41,11 +41,9 @@ def show():
             conn.commit()
 
         conn.close()
-
     except Exception as e:
         st.error(f"❌ Failed to ensure user exists: {e}")
         return
-
     # -------------------- TRANSACTION UPLOAD --------------------
     st.markdown("### 🏦 Upload Bank Statement (.csv only)")
     uploaded_file = st.file_uploader(
@@ -156,7 +154,7 @@ def show():
             conn = get_db_connection()
             cursor = conn.cursor()
 
-            current_month = pd.Timestamp.now().strftime("%Y-%m")
+            current_month = st.session_state["df"]["date"].dt.strftime("%Y-%m").mode()[0]
 
             records = [
                 (

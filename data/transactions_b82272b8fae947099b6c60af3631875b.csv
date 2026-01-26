@@ -1,0 +1,217 @@
+date,amount,description,category
+2023-01-05,10000,House Rent 1/2023,rent
+2023-01-08,4500,Monthly groceries,grocery
+2023-01-10,1200,Mobile recharge family,recharge
+2023-01-15,1800,Electricity bill,electricity
+2023-01-18,650,Water bill,water
+2023-01-25,900,Medical expenses,medical
+2023-02-05,10000,House Rent 2/2023,rent
+2023-02-08,4500,Monthly groceries,grocery
+2023-02-10,1200,Mobile recharge family,recharge
+2023-02-15,1800,Electricity bill,electricity
+2023-02-18,650,Water bill,water
+2023-02-25,900,Medical expenses,medical
+2023-03-05,10000,House Rent 3/2023,rent
+2023-03-08,4500,Monthly groceries,grocery
+2023-03-10,1200,Mobile recharge family,recharge
+2023-03-15,1800,Electricity bill,electricity
+2023-03-18,650,Water bill,water
+2023-03-25,900,Medical expenses,medical
+2023-04-05,10000,House Rent 4/2023,rent
+2023-04-08,4500,Monthly groceries,grocery
+2023-04-10,1200,Mobile recharge family,recharge
+2023-04-15,2400,Electricity bill,electricity
+2023-04-18,650,Water bill,water
+2023-04-25,900,Medical expenses,medical
+2023-05-05,10000,House Rent 5/2023,rent
+2023-05-08,4500,Monthly groceries,grocery
+2023-05-10,1200,Mobile recharge family,recharge
+2023-05-15,2400,Electricity bill,electricity
+2023-05-18,650,Water bill,water
+2023-05-25,2100,Medical expenses,medical
+2023-06-05,10000,House Rent 6/2023,rent
+2023-06-08,4500,Monthly groceries,grocery
+2023-06-10,1200,Mobile recharge family,recharge
+2023-06-15,2400,Electricity bill,electricity
+2023-06-18,650,Water bill,water
+2023-06-25,900,Medical expenses,medical
+2023-07-05,10000,House Rent 7/2023,rent
+2023-07-08,4500,Monthly groceries,grocery
+2023-07-10,1200,Mobile recharge family,recharge
+2023-07-15,1800,Electricity bill,electricity
+2023-07-18,650,Water bill,water
+2023-07-25,900,Medical expenses,medical
+2023-08-05,10000,House Rent 8/2023,rent
+2023-08-08,4500,Monthly groceries,grocery
+2023-08-10,1200,Mobile recharge family,recharge
+2023-08-15,1800,Electricity bill,electricity
+2023-08-18,650,Water bill,water
+2023-08-25,900,Medical expenses,medical
+2023-09-05,10000,House Rent 9/2023,rent
+2023-09-08,4500,Monthly groceries,grocery
+2023-09-10,1200,Mobile recharge family,recharge
+2023-09-15,1800,Electricity bill,electricity
+2023-09-18,650,Water bill,water
+2023-09-25,900,Medical expenses,medical
+2023-10-05,10000,House Rent 10/2023,rent
+2023-10-08,6000,Monthly groceries,grocery
+2023-10-10,1200,Mobile recharge family,recharge
+2023-10-15,1800,Electricity bill,electricity
+2023-10-18,650,Water bill,water
+2023-10-25,1700,Medical expenses,medical
+2023-11-05,10000,House Rent 11/2023,rent
+2023-11-08,4500,Monthly groceries,grocery
+2023-11-10,1200,Mobile recharge family,recharge
+2023-11-15,1800,Electricity bill,electricity
+2023-11-18,650,Water bill,water
+2023-11-25,900,Medical expenses,medical
+2023-12-05,10000,House Rent 12/2023,rent
+2023-12-08,4500,Monthly groceries,grocery
+2023-12-10,1200,Mobile recharge family,recharge
+2023-12-15,1800,Electricity bill,electricity
+2023-12-18,650,Water bill,water
+2023-12-25,2100,Medical expenses,medical
+2024-01-05,10000,House Rent 1/2024,rent
+2024-01-08,4700,Monthly groceries,grocery
+2024-01-10,1200,Mobile recharge family,recharge
+2024-01-15,1800,Electricity bill,electricity
+2024-01-18,650,Water bill,water
+2024-01-25,900,Medical expenses,medical
+2024-02-05,10000,House Rent 2/2024,rent
+2024-02-08,4700,Monthly groceries,grocery
+2024-02-10,1200,Mobile recharge family,recharge
+2024-02-15,1800,Electricity bill,electricity
+2024-02-18,650,Water bill,water
+2024-02-25,900,Medical expenses,medical
+2024-03-05,10000,House Rent 3/2024,rent
+2024-03-08,4700,Monthly groceries,grocery
+2024-03-10,1200,Mobile recharge family,recharge
+2024-03-15,1800,Electricity bill,electricity
+2024-03-18,650,Water bill,water
+2024-03-25,900,Medical expenses,medical
+2024-04-05,10000,House Rent 4/2024,rent
+2024-04-08,4700,Monthly groceries,grocery
+2024-04-10,1200,Mobile recharge family,recharge
+2024-04-15,2400,Electricity bill,electricity
+2024-04-18,650,Water bill,water
+2024-04-25,900,Medical expenses,medical
+2024-05-05,10000,House Rent 5/2024,rent
+2024-05-08,4700,Monthly groceries,grocery
+2024-05-10,1200,Mobile recharge family,recharge
+2024-05-15,2400,Electricity bill,electricity
+2024-05-18,650,Water bill,water
+2024-05-25,2100,Medical expenses,medical
+2024-06-05,10000,House Rent 6/2024,rent
+2024-06-08,4700,Monthly groceries,grocery
+2024-06-10,1200,Mobile recharge family,recharge
+2024-06-15,2400,Electricity bill,electricity
+2024-06-18,650,Water bill,water
+2024-06-25,900,Medical expenses,medical
+2024-07-05,10000,House Rent 7/2024,rent
+2024-07-08,4700,Monthly groceries,grocery
+2024-07-10,1200,Mobile recharge family,recharge
+2024-07-15,1800,Electricity bill,electricity
+2024-07-18,650,Water bill,water
+2024-07-25,900,Medical expenses,medical
+2024-08-05,10000,House Rent 8/2024,rent
+2024-08-08,4700,Monthly groceries,grocery
+2024-08-10,1200,Mobile recharge family,recharge
+2024-08-15,1800,Electricity bill,electricity
+2024-08-18,650,Water bill,water
+2024-08-25,900,Medical expenses,medical
+2024-09-05,10000,House Rent 9/2024,rent
+2024-09-08,4700,Monthly groceries,grocery
+2024-09-10,1200,Mobile recharge family,recharge
+2024-09-15,1800,Electricity bill,electricity
+2024-09-18,650,Water bill,water
+2024-09-25,900,Medical expenses,medical
+2024-10-05,10000,House Rent 10/2024,rent
+2024-10-08,6200,Monthly groceries,grocery
+2024-10-10,1200,Mobile recharge family,recharge
+2024-10-15,1800,Electricity bill,electricity
+2024-10-18,650,Water bill,water
+2024-10-25,1700,Medical expenses,medical
+2024-11-05,10000,House Rent 11/2024,rent
+2024-11-08,4700,Monthly groceries,grocery
+2024-11-10,1200,Mobile recharge family,recharge
+2024-11-15,1800,Electricity bill,electricity
+2024-11-18,650,Water bill,water
+2024-11-25,900,Medical expenses,medical
+2024-12-05,10000,House Rent 12/2024,rent
+2024-12-08,4700,Monthly groceries,grocery
+2024-12-10,1200,Mobile recharge family,recharge
+2024-12-15,1800,Electricity bill,electricity
+2024-12-18,650,Water bill,water
+2024-12-25,2100,Medical expenses,medical
+2025-01-05,10000,House Rent 1/2025,rent
+2025-01-08,4900,Monthly groceries,grocery
+2025-01-10,1200,Mobile recharge family,recharge
+2025-01-15,1800,Electricity bill,electricity
+2025-01-18,650,Water bill,water
+2025-01-25,900,Medical expenses,medical
+2025-02-05,10000,House Rent 2/2025,rent
+2025-02-08,4900,Monthly groceries,grocery
+2025-02-10,1200,Mobile recharge family,recharge
+2025-02-15,1800,Electricity bill,electricity
+2025-02-18,650,Water bill,water
+2025-02-25,900,Medical expenses,medical
+2025-03-05,10000,House Rent 3/2025,rent
+2025-03-08,4900,Monthly groceries,grocery
+2025-03-10,1200,Mobile recharge family,recharge
+2025-03-15,1800,Electricity bill,electricity
+2025-03-18,650,Water bill,water
+2025-03-25,900,Medical expenses,medical
+2025-04-05,10000,House Rent 4/2025,rent
+2025-04-08,4900,Monthly groceries,grocery
+2025-04-10,1200,Mobile recharge family,recharge
+2025-04-15,2400,Electricity bill,electricity
+2025-04-18,650,Water bill,water
+2025-04-25,900,Medical expenses,medical
+2025-05-05,10000,House Rent 5/2025,rent
+2025-05-08,4900,Monthly groceries,grocery
+2025-05-10,1200,Mobile recharge family,recharge
+2025-05-15,2400,Electricity bill,electricity
+2025-05-18,650,Water bill,water
+2025-05-25,2100,Medical expenses,medical
+2025-06-05,10000,House Rent 6/2025,rent
+2025-06-08,4900,Monthly groceries,grocery
+2025-06-10,1200,Mobile recharge family,recharge
+2025-06-15,2400,Electricity bill,electricity
+2025-06-18,650,Water bill,water
+2025-06-25,900,Medical expenses,medical
+2025-07-05,10000,House Rent 7/2025,rent
+2025-07-08,4900,Monthly groceries,grocery
+2025-07-10,1200,Mobile recharge family,recharge
+2025-07-15,1800,Electricity bill,electricity
+2025-07-18,650,Water bill,water
+2025-07-25,900,Medical expenses,medical
+2025-08-05,10000,House Rent 8/2025,rent
+2025-08-08,4900,Monthly groceries,grocery
+2025-08-10,1200,Mobile recharge family,recharge
+2025-08-15,1800,Electricity bill,electricity
+2025-08-18,650,Water bill,water
+2025-08-25,900,Medical expenses,medical
+2025-09-05,10000,House Rent 9/2025,rent
+2025-09-08,4900,Monthly groceries,grocery
+2025-09-10,1200,Mobile recharge family,recharge
+2025-09-15,1800,Electricity bill,electricity
+2025-09-18,650,Water bill,water
+2025-09-25,900,Medical expenses,medical
+2025-10-05,10000,House Rent 10/2025,rent
+2025-10-08,6400,Monthly groceries,grocery
+2025-10-10,1200,Mobile recharge family,recharge
+2025-10-15,1800,Electricity bill,electricity
+2025-10-18,650,Water bill,water
+2025-10-25,1700,Medical expenses,medical
+2025-11-05,10000,House Rent 11/2025,rent
+2025-11-08,4900,Monthly groceries,grocery
+2025-11-10,1200,Mobile recharge family,recharge
+2025-11-15,1800,Electricity bill,electricity
+2025-11-18,650,Water bill,water
+2025-11-25,900,Medical expenses,medical
+2025-12-05,10000,House Rent 12/2025,rent
+2025-12-08,4900,Monthly groceries,grocery
+2025-12-10,1200,Mobile recharge family,recharge
+2025-12-15,1800,Electricity bill,electricity
+2025-12-18,650,Water bill,water
+2025-12-25,2100,Medical expenses,medical

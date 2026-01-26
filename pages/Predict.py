@@ -1,70 +1,93 @@
-import pandas as pd
 import streamlit as st
-from pandas.tseries.offsets import MonthBegin
-from models.spending_predictor import train_model, predict_spending
+import pandas as pd
+
+from models.spending_predictor import train_models_by_category, predict_next_month
+
 
 @st.cache_resource
-def train_cached_model(monthly_df):
-    return train_model(monthly_df)
+def train_cached_models(monthly_df):
+    monthly_df = monthly_df.sort_values(["category", "month"]).reset_index(drop=True)
+    return train_models_by_category(monthly_df)
+
 
 def show():
-    if "df" not in st.session_state:
-        st.warning("Please upload a transaction file first.")
-        st.stop()
-
     st.subheader("🔮 Spending Prediction")
 
-    df = st.session_state["df"]
+    # ==================== REQUIRE UPLOADED DATA ====================
+    if "df" not in st.session_state:
+        st.info("Upload a transaction file to use spending prediction.")
+        st.stop()
 
-    # ---------- Monthly aggregation ----------
+    df = st.session_state["df"].copy()
+
+    if df.empty:
+        st.info("Uploaded dataset is empty.")
+        st.stop()
+
+    # ==================== PREP DATA ====================
+    df["date"] = pd.to_datetime(df["date"])
+    df["month"] = df["date"].dt.to_period("M").astype(str)
+
+    # Normalize categories (critical)
+    df["category"] = (
+        df["category"]
+        .astype(str)
+        .str.lower()
+        .str.strip()
+    )
+
     monthly = (
-        df[df["spend"] > 0]
-        .groupby(["month", "category"])
-        .agg(total_spend=("spend", "sum"))
-        .reset_index()
+        df[df["amount"] > 0]
+        .groupby(["month", "category"], as_index=False)
+        .agg(total_spend=("amount", "sum"))
     )
 
-    if monthly.empty:
-        st.warning("Not enough data to train the prediction model.")
-        return
+    if len(monthly) < 3:
+        st.warning("Not enough data to train prediction model.")
+        st.stop()
 
-    available_months = sorted(
-        monthly["month"].unique(),
-        key=lambda x: pd.Period(x, freq="M")
-    )
+    # ==================== CATEGORY SELECTION ====================
     categories = sorted(monthly["category"].unique())
 
-    # ---------- Train model ----------
-    with st.spinner("Training model..."):
-        model, (mae, rmse) = train_cached_model(monthly)
+    selected_category = st.selectbox(
+        "Select Category",
+        categories
+    )
 
-    # Store metrics for PDF
-    st.session_state["mae"] = mae
-    st.session_state["rmse"] = rmse
+    # ==================== TRAIN MODELS ====================
+    with st.spinner("Training prediction model..."):
+        models, metrics = train_cached_models(monthly)
 
-    # ---------- Metrics ----------
-    st.subheader("📈 Model Evaluation")
-    st.metric("MAE", f"₹{mae:,.2f}")
-    st.metric("RMSE", f"₹{rmse:,.2f}")
+    if selected_category not in models:
+        st.warning("Not enough history for this category.")
+        st.stop()
 
-    # ---------- Add next month ----------
-    next_month = (
-        pd.Period(available_months[-1], freq="M")
-        .to_timestamp() + MonthBegin(1)
-    ).strftime("%Y-%m")
+    # ==================== MODEL ACCURACY (CATEGORY-SPECIFIC) ====================
+    mae, rmse = metrics[selected_category]
 
-    if next_month not in available_months:
-        available_months.append(next_month)
+    st.subheader("📈 Model Accuracy")
+    col1, col2 = st.columns(2)
+    col1.metric("MAE", f"₹{mae:,.2f}")
+    col2.metric("RMSE", f"₹{rmse:,.2f}")
 
-    # ---------- Prediction UI ----------
-    st.subheader("📅 Predict")
-    selected_month = st.selectbox("Select Month", available_months)
-    selected_category = st.selectbox("Select Category", categories)
+    # ==================== NEXT MONTH PREDICTION ====================
+    st.subheader("📅 Predict Next Month")
 
-    if st.button("Predict Future Spend"):
-        prediction = predict_spending(
-            model=model,
-            month=selected_month,
-            category=selected_category
+    prediction = predict_next_month(
+        models=models,
+        history_df=monthly,
+        category=selected_category
+    )
+
+    st.success(
+        f"Predicted {selected_category.capitalize()} Spend Next Month: ₹{prediction:,.2f}"
+    )
+
+    # ==================== TRANSPARENCY ====================
+    with st.expander("🔍 Last 3 Months Used for Prediction"):
+        st.dataframe(
+            monthly[monthly["category"] == selected_category]
+            .sort_values("month", ascending=False)
+            .head(3),
+            use_container_width=True
         )
-        st.success(f"Predicted Spend: ₹{prediction:,.2f}")
