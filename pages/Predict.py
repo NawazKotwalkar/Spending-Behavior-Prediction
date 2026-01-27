@@ -45,9 +45,6 @@ def show():
     if len(monthly) < 3:
         st.warning("Not enough data to train prediction model.")
         st.stop()
-
-    
-
     # ==================== TRAIN MODELS ====================
     with st.spinner("Training prediction model..."):
         models, metrics = train_cached_models(monthly)
