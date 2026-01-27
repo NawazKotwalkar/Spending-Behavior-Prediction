@@ -28,7 +28,6 @@ def show():
     df["date"] = pd.to_datetime(df["date"])
     df["month"] = df["date"].dt.to_period("M").astype(str)
 
-    # Normalize categories (critical)
     df["category"] = (
         df["category"]
         .astype(str)
@@ -45,15 +44,29 @@ def show():
     if len(monthly) < 3:
         st.warning("Not enough data to train prediction model.")
         st.stop()
+
     # ==================== TRAIN MODELS ====================
     with st.spinner("Training prediction model..."):
         models, metrics = train_cached_models(monthly)
 
+    if not models:
+        st.warning("No categories have enough history to train a model.")
+        st.stop()
+
+    # ==================== CATEGORY SELECTION (DEFINE FIRST) ====================
+    categories = sorted(models.keys())
+
+    selected_category = st.selectbox(
+        "Select Category",
+        categories
+    )
+
+    # ==================== CATEGORY VALIDATION ====================
     if selected_category not in models:
         st.warning("Not enough history for this category.")
         st.stop()
 
-    # ==================== MODEL ACCURACY (CATEGORY-SPECIFIC) ====================
+    # ==================== MODEL ACCURACY ====================
     mae, rmse = metrics[selected_category]
 
     st.subheader("📈 Model Accuracy")
@@ -63,13 +76,7 @@ def show():
 
     # ==================== NEXT MONTH PREDICTION ====================
     st.subheader("📅 Predict Next Month")
-    # ==================== CATEGORY SELECTION ====================
-    categories = sorted(monthly["category"].unique())
 
-    selected_category = st.selectbox(
-        "Select Category",
-        categories
-    )
     prediction = predict_next_month(
         models=models,
         history_df=monthly,

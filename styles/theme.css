@@ -106,22 +106,7 @@ input:focus, textarea:focus,
   box-shadow: 0 0 6px rgba(31,122,77,0.22) !important;
 }
 
-/* === Select / Multiselect (BaseWeb wrappers) === */
-.stMultiSelect div[data-baseweb="select"],
-.stSelectbox div[data-baseweb="select"],
-div[data-baseweb="select"] {
-  background-color: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  border-bottom: 2px solid #1f7a4d !important;
-  border-radius: 0 !important;
-  padding: 6px 0 4px 0 !important;
-  color: #145a32 !important;
-  font-weight: 600 !important;
-  font-size: 15px !important;
-  box-shadow: none !important;
-  transition: all 0.18s ease-in-out;
-}
+
 .stMultiSelect div[data-baseweb="select"]:focus-within,
 .stSelectbox div[data-baseweb="select"]:focus-within {
   border-bottom: 2px solid #145a32 !important;
@@ -502,3 +487,126 @@ div.stLinkButton > a:active > button {
   transform: scale(0.97);
 }
 
+/* Metric cards (MAE / RMSE) */
+div[data-testid="metric-container"] {
+    background: linear-gradient(180deg, #0f172a, #020617);
+    border: 1px solid #1e293b;
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+div[data-testid="metric-container"] label {
+    color: #94a3b8 !important;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+}
+
+div[data-testid="metric-container"] div {
+    color: #e5e7eb !important;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+/* Prediction success box */
+div.stAlert-success {
+    background: linear-gradient(135deg, #052e16, #064e3b);
+    border-left: 6px solid #22c55e;
+    color: #ecfdf5;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.15);
+}
+
+div.stAlert-success p {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0;
+}
+/* ================= MULTISELECT CONTAINER ================= */
+div[data-baseweb="select"] {
+    background: linear-gradient(180deg, #052e16, #064e3b);
+    border-radius: 12px;
+    border: 1px solid #14532d;
+}
+
+/* ================= LABEL TEXT ================= */
+div[data-testid="stMultiselect"] label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #22c55e;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 6px rgba(34, 197, 94, 0.35);
+}
+
+/* ================= DROPDOWN OPTIONS ================= */
+li[role="option"] {
+    background-color: #052e16 !important;
+    color: #ecfdf5 !important;
+    font-weight: 500;
+}
+
+li[role="option"]:hover {
+    background-color: #166534 !important;
+    color: #ecfdf5 !important;
+}
+
+/* ================= SELECTED OPTION ================= */
+li[aria-selected="true"] {
+    background-color: #22c55e !important;
+    color: #022c22 !important;
+    font-weight: 600;
+}
+
+/* ================= SELECTED PILLS ================= */
+div[data-baseweb="tag"] {
+    background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+    color: #022c22 !important;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Remove (x) icon color */
+div[data-baseweb="tag"] svg {
+    fill: #022c22 !important;
+}
+
+/* ================= DROPDOWN ARROW ================= */
+svg[data-testid="caretDown"] {
+    fill: #22c55e !important;
+}
+
+/* ================= INPUT / PLACEHOLDER TEXT ================= */
+div[data-baseweb="select"] span {
+    color: #ecfdf5 !important;
+}
+/* ================= ERROR ALERT ================= */
+div.stAlert-error {
+    background: linear-gradient(135deg, #450a0a, #7f1d1d);
+    border-left: 6px solid #ef4444;
+    color: #fee2e2;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 12px 30px rgba(239, 68, 68, 0.18);
+}
+
+div.stAlert-error p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ================= INFO ALERT ================= */
+div.stAlert-info {
+    background: linear-gradient(135deg, #052e16, #064e3b);
+    border-left: 6px solid #22c55e;
+    color: #ecfdf5;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.18);
+}
+
+div.stAlert-info p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+}

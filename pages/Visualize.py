@@ -25,7 +25,7 @@ def show():
         .str.strip()
     )
     # ==================== FILTERS ====================
-    st.markdown("### 🔎 Filters")
+    st.markdown("### Filters")
     # Categories ONLY from dataset
     categories = sorted(df["category"].unique())
     selected_categories = st.multiselect(
@@ -54,7 +54,7 @@ def show():
         st.warning("No data for selected filters.")
         st.stop()
     # ==================== BAR CHART ====================
-    st.markdown("### 📊 Spending by Category")
+    st.markdown("### Spending by Category")
     bar_data = df_filtered.groupby("category", as_index=False)["amount"].sum()
     bar_chart = alt.Chart(bar_data).mark_bar().encode(
         x=alt.X("category:N", sort="-y"),
@@ -63,7 +63,7 @@ def show():
     ).properties(height=CHART_HEIGHT)
     st.altair_chart(bar_chart, use_container_width=True)
     # ==================== PIE CHART ====================
-    st.markdown("### 🥧 Spending Distribution")
+    st.markdown("### Spending Distribution")
     if len(selected_categories) == 1 and len(selected_months) > 1:
         pie_data = df_filtered.groupby("month", as_index=False)["amount"].sum()
         color_field = "month:N"
@@ -79,7 +79,7 @@ def show():
     ).properties(height=CHART_HEIGHT, title=title)
     st.altair_chart(pie_chart, use_container_width=True)
     # ==================== LINE CHART ====================
-    st.markdown("### 📈 Monthly Spending Trend")
+    st.markdown("### Monthly Spending Trend")
 
     line_data = (
         df_filtered
@@ -94,7 +94,7 @@ def show():
     ).properties(height=CHART_HEIGHT)
     st.altair_chart(line_chart, use_container_width=True)
     # ==================== STACKED BAR ====================
-    st.markdown("### 🧱 Category Contribution per Month")
+    st.markdown("### Category Contribution per Month")
     stacked_data = (
         df_filtered
         .groupby(["month", "category"], as_index=False)["amount"]
@@ -108,7 +108,7 @@ def show():
     ).properties(height=CHART_HEIGHT)
     st.altair_chart(stacked_chart, use_container_width=True)
     # ==================== BUDGET VS ACTUAL ====================
-    st.markdown("### 💰 Budget vs Actual")
+    st.markdown("### Budget vs Actual")
     budget_month = st.selectbox(
         "Select Month for Budget Comparison",
         selected_months,
@@ -122,14 +122,8 @@ def show():
 
     if chart is not None:
         st.altair_chart(chart, use_container_width=True)
-        with st.expander("📋 Show Budget vs Actual Data"):
+        with st.expander("Show Budget vs Actual Data"):
             st.dataframe(
                 merged.sort_values("difference", ascending=False),
                 use_container_width=True,
             )
-    # ==================== TRANSACTION TABLE ====================
-    st.markdown("### 📋 Transactions Table")
-    st.dataframe(
-        df_filtered.sort_values("date", ascending=False),
-        use_container_width=True,
-    )
