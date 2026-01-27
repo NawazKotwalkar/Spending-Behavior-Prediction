@@ -79,7 +79,13 @@ def generate_chart(data, chart_type, selected_months, selected_categories):
     return None
 
 def generate_budget_vs_actual_chart(df, selected_month, chart_type):
-    budget_df = get_all_budgets().copy()
+    budget_df = get_all_budgets()
+
+    if budget_df is None or budget_df.empty:
+        return None, None
+
+    budget_df = budget_df.copy()
+
 
     # 🔑 NORMALIZE BUDGET COLUMN NAME
     if "budget_amount" in budget_df.columns:
