@@ -46,13 +46,7 @@ def show():
         st.warning("Not enough data to train prediction model.")
         st.stop()
 
-    # ==================== CATEGORY SELECTION ====================
-    categories = sorted(monthly["category"].unique())
-
-    selected_category = st.selectbox(
-        "Select Category",
-        categories
-    )
+    
 
     # ==================== TRAIN MODELS ====================
     with st.spinner("Training prediction model..."):
@@ -72,7 +66,13 @@ def show():
 
     # ==================== NEXT MONTH PREDICTION ====================
     st.subheader("📅 Predict Next Month")
+    # ==================== CATEGORY SELECTION ====================
+    categories = sorted(monthly["category"].unique())
 
+    selected_category = st.selectbox(
+        "Select Category",
+        categories
+    )
     prediction = predict_next_month(
         models=models,
         history_df=monthly,
