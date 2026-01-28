@@ -14,7 +14,7 @@ def show():
 
     # -------------------- LOAD DATA --------------------
     if "df" not in st.session_state:
-        st.warning("Please upload a transaction file first.")
+        st.info("Please upload a transaction file first.")
         return
 
     df = st.session_state["df"].copy()

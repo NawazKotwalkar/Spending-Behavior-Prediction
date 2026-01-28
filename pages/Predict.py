@@ -71,8 +71,8 @@ def show():
 
     st.subheader("📈 Model Accuracy")
     col1, col2 = st.columns(2)
-    col1.metric("MAE", f"₹{mae:,.2f}")
-    col2.metric("RMSE", f"₹{rmse:,.2f}")
+    col1.markdown(f"<p>MAE</p><h2 style='color:#1b5e20;'>₹{mae:,.2f}</h2>", unsafe_allow_html=True)
+    col2.markdown(f"<p>RMSE</p><h2 style='color:#2e7d32;'>₹{rmse:,.2f}</h2>", unsafe_allow_html=True)
 
     # ==================== NEXT MONTH PREDICTION ====================
     st.subheader("📅 Predict Next Month")
