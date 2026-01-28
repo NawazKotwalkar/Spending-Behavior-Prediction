@@ -5,7 +5,7 @@ from ui.auth import auth_ui
 
 # ------------------- PAGE CONFIG & THEME -------------------
 st.set_page_config(
-    page_title="Expenso",
+    page_title="Expenxo",
     page_icon="assets/expenso_logo.png",
     layout="wide",
 )
