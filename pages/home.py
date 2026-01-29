@@ -44,5 +44,3 @@ def show():
     Category names in the budget file must match transaction categories  
     (after trimming spaces and converting to lowercase).
     """)
-
-
