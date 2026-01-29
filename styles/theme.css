@@ -149,31 +149,6 @@ div.metric-container {
   color: #0f5132 !important;
 }
 
-/* === Alerts / Messages === */
-.stAlert, .stError, .stWarning, .stSuccess,
-div.alert, .alert-box {
-  padding: 0.8rem 1rem !important;
-  border-radius: 8px !important;
-  font-weight: 500 !important;
-  margin-bottom: 1rem !important;
-  font-size: 15px !important;
-}
-.stError, .alert-error {
-  background-color: #fdecea !important;
-  color: #b71c1c !important;
-  border-left: 5px solid #b71c1c !important;
-}
-.stWarning, .alert-warning {
-  background-color: #fff8e1 !important;
-  color: #ff6f00 !important;
-  border-left: 5px solid #ffa726 !important;
-}
-.stSuccess, .alert-success {
-  background-color: #eaf6f0 !important;
-  color: #1f7a4d !important;
-  border-left: 5px solid #2ecc71 !important;
-}
-
 /* === Dataframe / table styling === */
 .stDataFrame, .dataframe, div.stDataFrame {
   background-color: #ffffff !important;
@@ -229,49 +204,73 @@ section[data-testid="stSidebar"] {
 }
 
 /* === Custom alerts used in code === */
+/* === Custom alerts used in code === */
+.custom-alert-warning,
+.custom-alert-success,
+.custom-alert-error,
+.custom-alert-info {
+  padding: 12px 18px;
+  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover micro-lift */
+.custom-alert-warning:hover,
+.custom-alert-success:hover,
+.custom-alert-error:hover,
+.custom-alert-info:hover {
+  transform: translateY(-3px);
+}
+
+/* WARNING */
 .custom-alert-warning {
   background-color: #fff8e1;
   border-left: 6px solid #ffa726;
-  padding: 12px 18px;
-  margin: 12px 0;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
   color: #ff6f00;
   box-shadow: 0 2px 6px rgba(255,165,0,0.08);
 }
+
+.custom-alert-warning:hover {
+  box-shadow: 0 8px 20px rgba(255,165,0,0.18);
+}
+
+/* SUCCESS */
 .custom-alert-success {
   background-color: #eaf6f0;
   border-left: 6px solid #2ecc71;
-  padding: 12px 18px;
-  margin: 12px 0;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 10px;
   color: #1f7a4d;
   box-shadow: 0 2px 6px rgba(0,128,0,0.06);
 }
 
-/* === Predict / Metrics — fixed & responsive === */
-.metrics-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  align-items: stretch;
-  margin-bottom: 0.75rem;
-  box-sizing: border-box;
+.custom-alert-success:hover {
+  box-shadow: 0 8px 20px rgba(46,204,113,0.22);
 }
 
-/* card shell */
-.custom-metric-card {
-  box-sizing: border-box;
-  flex: 1 1 220px;
-  min-width: 200px;
-  max-width: 420px;
-  display: flex;
-  align-items: stretch;
-  margin: 0;
-  padding: 0;
+/* ERROR */
+.custom-alert-error {
+  background-color: #fbeaea;
+  border-left: 6px solid #e74c3c;
+  color: #b91c1c;
+  box-shadow: 0 2px 6px rgba(231,76,60,0.1);
+}
+
+.custom-alert-error:hover {
+  box-shadow: 0 8px 20px rgba(231,76,60,0.22);
+}
+
+/* INFO */
+.custom-alert-info {
+  background-color: #e3f2fd;
+  border-left: 6px solid #42a5f5;
+  color: #0d47a1;
+  box-shadow: 0 2px 6px rgba(66,165,245,0.12);
+}
+
+.custom-alert-info:hover {
+  box-shadow: 0 8px 20px rgba(66,165,245,0.22);
 }
 
 /* inner visual wrapper */
@@ -508,21 +507,7 @@ div[data-testid="metric-container"] div {
     font-weight: 600;
     font-size: 1.4rem;
 }
-/* Prediction success box */
-div.stAlert-success {
-    background: linear-gradient(135deg, #052e16, #064e3b);
-    border-left: 6px solid #22c55e;
-    color: #ecfdf5;
-    border-radius: 12px;
-    padding: 16px 18px;
-    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.15);
-}
 
-div.stAlert-success p {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin: 0;
-}
 /* ================= MULTISELECT CONTAINER ================= */
 div[data-baseweb="select"] {
     background: linear-gradient(180deg, #052e16, #064e3b);
@@ -610,4 +595,62 @@ div.stAlert-info p {
     font-size: 1rem;
     font-weight: 600;
     margin: 0;
+}
+/* ===== Metric Cards ===== */
+.metric-card {
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+}
+
+/* INFO card (MAE) */
+.metric-card.info {
+  background: #eef6ff;
+  border-left: 6px solid #3b82f6;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+}
+
+.metric-card.info:hover {
+  box-shadow: 0 10px 28px rgba(59, 130, 246, 0.25);
+}
+
+/* SUCCESS card (RMSE) */
+.metric-card.success {
+  background: #eafaf1;
+  border-left: 6px solid #22c55e;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.15);
+}
+
+.metric-card.success:hover {
+  box-shadow: 0 10px 28px rgba(34, 197, 94, 0.25);
+}
+
+/* Text */
+.metric-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.metric-value {
+  margin: 4px 0 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Color tweaks */
+.info .metric-title,
+.info .metric-value {
+  color: #1e3a8a;
+}
+
+.success .metric-title,
+.success .metric-value {
+  color: #14532d;
 }
