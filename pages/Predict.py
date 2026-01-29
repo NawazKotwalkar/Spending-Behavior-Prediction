@@ -15,13 +15,19 @@ def show():
 
     # ==================== REQUIRE UPLOADED DATA ====================
     if "df" not in st.session_state:
-        st.info("Upload a transaction file to use spending prediction.")
+        st.markdown(
+            "<div class='custom-alert-warning'>📤 Upload a transaction file to use spending prediction.</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
 
     df = st.session_state["df"].copy()
 
     if df.empty:
-        st.info("Uploaded dataset is empty.")
+        st.markdown(
+            "<div class='custom-alert-warning'>⚠️ Uploaded dataset is empty.</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
 
     # ==================== PREP DATA ====================
@@ -42,7 +48,10 @@ def show():
     )
 
     if len(monthly) < 3:
-        st.warning("Not enough data to train prediction model.")
+        st.markdown(
+            "<div class='custom-alert-warning'>⚠️ Not enough data to train prediction model.</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
 
     # ==================== TRAIN MODELS ====================
@@ -50,10 +59,13 @@ def show():
         models, metrics = train_cached_models(monthly)
 
     if not models:
-        st.warning("No categories have enough history to train a model.")
+        st.markdown(
+            "<div class='custom-alert-warning'>⚠️ No categories have enough history to train a model.</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
 
-    # ==================== CATEGORY SELECTION (DEFINE FIRST) ====================
+    # ==================== CATEGORY SELECTION ====================
     categories = sorted(models.keys())
 
     selected_category = st.selectbox(
@@ -63,7 +75,10 @@ def show():
 
     # ==================== CATEGORY VALIDATION ====================
     if selected_category not in models:
-        st.warning("Not enough history for this category.")
+        st.markdown(
+            "<div class='custom-alert-warning'>⚠️ Not enough history for this category.</div>",
+            unsafe_allow_html=True
+        )
         st.stop()
 
     # ==================== MODEL ACCURACY ====================
@@ -71,8 +86,26 @@ def show():
 
     st.subheader("📈 Model Accuracy")
     col1, col2 = st.columns(2)
-    col1.markdown(f"<p>MAE</p><h2 style='color:#1b5e20;'>₹{mae:,.2f}</h2>", unsafe_allow_html=True)
-    col2.markdown(f"<p>RMSE</p><h2 style='color:#2e7d32;'>₹{rmse:,.2f}</h2>", unsafe_allow_html=True)
+
+    col1.markdown(
+        f"""
+        <div class="metric-card info">
+            <p class="metric-title">MAE</p>
+            <p class="metric-value">₹{mae:,.2f}</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    col2.markdown(
+        f"""
+        <div class="metric-card success">
+            <p class="metric-title">RMSE</p>
+            <p class="metric-value">₹{rmse:,.2f}</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     # ==================== NEXT MONTH PREDICTION ====================
     st.subheader("📅 Predict Next Month")
@@ -83,8 +116,11 @@ def show():
         category=selected_category
     )
 
-    st.success(
-        f"Predicted {selected_category.capitalize()} Spend Next Month: ₹{prediction:,.2f}"
+    st.markdown(
+        f"<div class='custom-alert-success'>✅ Predicted "
+        f"<b>{selected_category.capitalize()}</b> spend next month: "
+        f"<b>₹{prediction:,.2f}</b></div>",
+        unsafe_allow_html=True
     )
 
     # ==================== TRANSPARENCY ====================
