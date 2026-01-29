@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import uuid
+
 from scripts.csv_parser import parse_csv
 from utils.auth_db import get_logged_in_user, get_db_connection
 
@@ -16,6 +17,7 @@ def show():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
+
         cursor.execute(
             "SELECT username FROM users WHERE username=%s",
             (current_user,)
@@ -41,11 +43,17 @@ def show():
             conn.commit()
 
         conn.close()
+
     except Exception as e:
-        st.error(f"❌ Failed to ensure user exists: {e}")
+        st.markdown(
+            f"<div class='custom-alert-error'>❌ Failed to ensure user exists: {e}</div>",
+            unsafe_allow_html=True
+        )
         return
+
     # -------------------- TRANSACTION UPLOAD --------------------
     st.markdown("### 🏦 Upload Bank Statement (.csv only)")
+
     uploaded_file = st.file_uploader(
         "Choose Transaction File",
         type=["csv"],
@@ -60,7 +68,10 @@ def show():
             with open(path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
         except PermissionError:
-            st.error("❌ Please close the CSV file if it is open and try again.")
+            st.markdown(
+                "<div class='custom-alert-error'>❌ Please close the CSV file and try again.</div>",
+                unsafe_allow_html=True
+            )
             return
 
         st.session_state["transaction_file"] = path
@@ -73,13 +84,14 @@ def show():
             df["date"] = pd.to_datetime(df["date"], errors="coerce")
             df = df.dropna(subset=["date", "amount"])
 
-            # ❌ DO NOT CREATE month HERE
-            # ❌ DO NOT CREATE spend COLUMN
-
             # ---- STORE IN SESSION STATE ----
             st.session_state["df"] = df
 
-            st.success(f"✅ Loaded {len(df)} transactions successfully.")
+            st.markdown(
+                f"<div class='custom-alert-success'>✅ Loaded "
+                f"<b>{len(df)}</b> transactions successfully.</div>",
+                unsafe_allow_html=True
+            )
 
             # ---- INSERT INTO DATABASE ----
             conn = get_db_connection()
@@ -109,16 +121,25 @@ def show():
             inserted = cursor.rowcount
             conn.close()
 
-            st.info(f"📥 {inserted} transactions stored for {current_user}")
+            st.markdown(
+                f"<div class='custom-alert-info'>📥 Stored "
+                f"<b>{inserted}</b> transactions for "
+                f"<b>{current_user}</b>.</div>",
+                unsafe_allow_html=True
+            )
 
         except Exception as e:
-            st.error(f"❌ Failed to parse transaction file: {e}")
+            st.markdown(
+                f"<div class='custom-alert-error'>❌ Failed to parse transaction file: {e}</div>",
+                unsafe_allow_html=True
+            )
             return
 
     st.markdown("---")
 
     # -------------------- BUDGET UPLOAD --------------------
     st.markdown("### 📊 Upload Budget File (category, budget)")
+
     budget_file = st.file_uploader(
         "Choose Budget File",
         type=["csv"],
@@ -136,7 +157,11 @@ def show():
         df_budget.columns = df_budget.columns.str.strip().str.lower()
 
         if not {"category", "budget"}.issubset(df_budget.columns):
-            st.error("❌ Budget CSV must contain exactly: category, budget")
+            st.markdown(
+                "<div class='custom-alert-error'>❌ Budget CSV must contain: "
+                "<b>category</b>, <b>budget</b>.</div>",
+                unsafe_allow_html=True
+            )
             return
 
         # ---- NORMALIZE CATEGORY ----
@@ -147,14 +172,17 @@ def show():
             .str.lower()
         )
 
-        # ---- STORE FOR CHARTS ----
         st.session_state["budget_df"] = df_budget
 
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
 
-            current_month = st.session_state["df"]["date"].dt.strftime("%Y-%m").mode()[0]
+            current_month = (
+                st.session_state["df"]["date"]
+                .dt.strftime("%Y-%m")
+                .mode()[0]
+            )
 
             records = [
                 (
@@ -178,9 +206,17 @@ def show():
             )
 
             conn.commit()
+            affected = cursor.rowcount
             conn.close()
 
-            st.success(f"✅ {cursor.rowcount} budget items saved")
+            st.markdown(
+                f"<div class='custom-alert-success'>✅ "
+                f"<b>{affected}</b> budget items saved successfully.</div>",
+                unsafe_allow_html=True
+            )
 
         except Exception as e:
-            st.error(f"❌ Failed to store budget data: {e}")
+            st.markdown(
+                f"<div class='custom-alert-error'>❌ Failed to store budget data: {e}</div>",
+                unsafe_allow_html=True
+            )
