@@ -6,7 +6,6 @@ from utils.chart_utils import display_budget_vs_actual
 
 CHART_HEIGHT = 420
 
-
 def show():
     st.title("📊 Visualize Spending")
 
